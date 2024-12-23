@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ステージ構成用%28.h%29">
+      <UniqueIdentifier>{07ff2f21-0d27-461a-8492-a4ff5eace7bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ステージ構成用%28.cpp%29">
+      <UniqueIdentifier>{23226a63-c39d-46e9-964c-6c120615cfdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\オブジェクト系%28.cpp%29">
+      <UniqueIdentifier>{4e7ba663-89c8-4b02-9525-20f02ed2b20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\オブジェクト系%28.h%29">
+      <UniqueIdentifier>{5e76b512-8bb0-4abf-8083-bcd6de205078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\汎用データ%28cpp%29">
+      <UniqueIdentifier>{86d648cc-4fa6-4bb3-a4f3-c3fe8352b163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\キャラクター系%28.cpp%29">
+      <UniqueIdentifier>{540e7bb3-d886-4eb7-8c07-55cac98f5866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面%28cpp%29">
+      <UniqueIdentifier>{bc7d316b-c787-4119-825e-9882d0d7cd17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\キャラクター系%28.h%29">
+      <UniqueIdentifier>{45712d83-17d8-4b9e-94fb-dd329616ec96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\汎用データ%28h%29">
+      <UniqueIdentifier>{cb85e137-ac75-471c-8995-35a27e53f86d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面%28h%29">
+      <UniqueIdentifier>{19f84511-e708-4e59-9036-04578096ab33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="block.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="gimic.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="playerx.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>ソース ファイル\オブジェクト系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="object2d.cpp">
+      <Filter>ソース ファイル\オブジェクト系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="object3d.cpp">
+      <Filter>ソース ファイル\オブジェクト系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="objectx.cpp">
+      <Filter>ソース ファイル\オブジェクト系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>ソース ファイル\画面%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="tool.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="scope.cpp">
+      <Filter>ソース ファイル\画面%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="billboard.cpp">
+      <Filter>ソース ファイル\オブジェクト系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="stage.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="BG.cpp">
+      <Filter>ソース ファイル\画面%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>ソース ファイル\画面%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="modelparts.cpp">
+      <Filter>ソース ファイル\キャラクター系%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>ソース ファイル\汎用データ%28cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>ソース ファイル\ステージ構成用%28.cpp%29</Filter>
+    </ClCompile>
+    <ClCompile Include="number.cpp">
+      <Filter>ソース ファイル\画面%28cpp%29</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="block.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="gimic.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="player.x.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>ヘッダー ファイル\オブジェクト系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="object2d.h">
+      <Filter>ヘッダー ファイル\オブジェクト系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="object3d.h">
+      <Filter>ヘッダー ファイル\オブジェクト系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="objectx.h">
+      <Filter>ヘッダー ファイル\オブジェクト系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>ヘッダー ファイル\画面%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="tool.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="scope.h">
+      <Filter>ヘッダー ファイル\画面%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="billboard.h">
+      <Filter>ヘッダー ファイル\オブジェクト系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="BG.h">
+      <Filter>ヘッダー ファイル\画面%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>ヘッダー ファイル\画面%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="modelparts.h">
+      <Filter>ヘッダー ファイル\キャラクター系%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>ヘッダー ファイル\汎用データ%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>ヘッダー ファイル\ステージ構成用%28.h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="number.h">
+      <Filter>ヘッダー ファイル\画面%28h%29</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
