@@ -147,7 +147,7 @@ void CCollision::Update()
 				pPlayerX->m_pos.z + 5 > pBlock[i]->m_pos.z - 5 &&
 				pPlayerX->m_pos.z - 5 < pBlock[i]->m_pos.z + 5 &&
 				pPlayerX->m_pos.y < pBlock[i]->m_pos.y + 18 &&
-				pPlayerX->m_pos.y > pBlock[i]->m_pos.y + 9 )/*&&
+				pPlayerX->m_pos.y > pBlock[i]->m_pos.y + 9)/*&&
 				pPlayerX->m_posOld.y > pBlock[i]->m_pos.y + 20*/
 			{
 				pBlock[i]->OnCol = true;
@@ -464,67 +464,67 @@ void CCollision::Update()
 			else if (pGround[i]->G_type == CGround::GType::SMALL)
 			{//地面（小）
 			//上
-			if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 45 &&
-				pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 45 &&
-				pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
-				pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
-				pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
-				pPlayerX->m_pos.y > pGround[i]->m_pos.y + 25)
-			{
-				pGround[i]->OnCol = true;
-				pPlayerX->m_Land = true;
-				pPlayerX->m_pos.y = pGround[i]->m_pos.y + 53;
+				if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 45 &&
+					pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 45 &&
+					pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
+					pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
+					pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
+					pPlayerX->m_pos.y > pGround[i]->m_pos.y + 25)
+				{
+					pGround[i]->OnCol = true;
+					pPlayerX->m_Land = true;
+					pPlayerX->m_pos.y = pGround[i]->m_pos.y + 53;
 
-			}
-			//下
-			else if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 45 &&
-				pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 45 &&
-				pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
-				pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
-				pPlayerX->m_pos.y > pGround[i]->m_pos.y &&
-				pPlayerX->m_pos.y < pGround[i]->m_pos.y + 25)
-			{
-				pPlayerX->move.y = 0;
-				pPlayerX->m_Grav = 0.75;
-				pPlayerX->m_pos.y = pGround[i]->m_pos.y - 5;
+				}
+				//下
+				else if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 45 &&
+					pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 45 &&
+					pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
+					pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
+					pPlayerX->m_pos.y > pGround[i]->m_pos.y &&
+					pPlayerX->m_pos.y < pGround[i]->m_pos.y + 25)
+				{
+					pPlayerX->move.y = 0;
+					pPlayerX->m_Grav = 0.75;
+					pPlayerX->m_pos.y = pGround[i]->m_pos.y - 5;
 
-			}
+				}
 
-			//左
-			else if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 50 &&
-				pPlayerX->m_posOld.x < pGround[i]->m_pos.x - 50 &&
-				pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
-				pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
-				pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
-				pPlayerX->m_pos.y >= pGround[i]->m_pos.y)
-			{
-				pPlayerX->m_pos.x = pGround[i]->m_pos.x - 55;
-			}
+				//左
+				else if (pPlayerX->m_pos.x + 5 > pGround[i]->m_pos.x - 50 &&
+					pPlayerX->m_posOld.x < pGround[i]->m_pos.x - 50 &&
+					pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
+					pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
+					pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
+					pPlayerX->m_pos.y >= pGround[i]->m_pos.y)
+				{
+					pPlayerX->m_pos.x = pGround[i]->m_pos.x - 55;
+				}
 
-			//右
-			else if (pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 50 &&
-				pPlayerX->m_posOld.x > pGround[i]->m_pos.x + 50 &&
-				pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
-				pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
-				pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
-				pPlayerX->m_pos.y >= pGround[i]->m_pos.y)
-			{
-				pPlayerX->m_pos.x = pGround[i]->m_pos.x + 55;
-			}
+				//右
+				else if (pPlayerX->m_pos.x - 5 < pGround[i]->m_pos.x + 50 &&
+					pPlayerX->m_posOld.x > pGround[i]->m_pos.x + 50 &&
+					pPlayerX->m_pos.z + 5 > pGround[i]->m_pos.z - 5 &&
+					pPlayerX->m_pos.z - 5 < pGround[i]->m_pos.z + 5 &&
+					pPlayerX->m_pos.y < pGround[i]->m_pos.y + 53 &&
+					pPlayerX->m_pos.y >= pGround[i]->m_pos.y)
+				{
+					pPlayerX->m_pos.x = pGround[i]->m_pos.x + 55;
+				}
 
-			if (pGround[i]->OnCol == true &&
-				pPlayerX->m_pos.x - 5 > pGround[i]->m_pos.x + 50)
-			{
-				pGround[i]->OnCol = false;
-				pPlayerX->m_Land = false;
-			}
+				if (pGround[i]->OnCol == true &&
+					pPlayerX->m_pos.x - 5 > pGround[i]->m_pos.x + 50)
+				{
+					pGround[i]->OnCol = false;
+					pPlayerX->m_Land = false;
+				}
 
-			else if (pGround[i]->OnCol == true &&
-				pPlayerX->m_pos.x + 5 < pGround[i]->m_pos.x - 50)
-			{
-				pGround[i]->OnCol = false;
-				pPlayerX->m_Land = false;
-			}
+				else if (pGround[i]->OnCol == true &&
+					pPlayerX->m_pos.x + 5 < pGround[i]->m_pos.x - 50)
+				{
+					pGround[i]->OnCol = false;
+					pPlayerX->m_Land = false;
+				}
 			}
 		}
 	}
@@ -549,21 +549,27 @@ void CCollision::Update()
 	{
 		if (pBullet[i] != nullptr && pBullet[i]->IsUse != false)
 		{
-			if (pBullet[i]->IsPlayer == true )	//敵用当たり判定
+			if (pBullet[i]->IsPlayer == true)	//敵用当たり判定
 			{
 				for (int enemy = 0; enemy < ENM_MAX; enemy++)
 				{
+
 					if (pEnemy[enemy] != nullptr && pEnemy[enemy]->m_bDeath == false && pBullet[i]->IsUse == true)
 					{
 						if (pBullet[i]->m_pos.x - 5 <= pEnemy[enemy]->m_pos.x + 5 &&
 							pBullet[i]->m_pos.x + 5 >= pEnemy[enemy]->m_pos.x - 5 &&
-							pBullet[i]->m_pos.y <= pEnemy[enemy]->m_pos.y + 15 &&
+							pBullet[i]->m_pos.y <= pEnemy[enemy]->m_pos.y + 20 &&
 							pBullet[i]->m_pos.y >= pEnemy[enemy]->m_pos.y)
 						{
 							pBullet[i]->IsUse = false;
 							pEnemy[enemy]->E_HP--;
+							if (pEnemy[enemy]->E_HP <= 0)
+							{
+								pEnemy[enemy]->m_bDeath = true;
+							}
 						}
 					}
+
 				}
 			}
 

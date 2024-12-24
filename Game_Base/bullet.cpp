@@ -163,11 +163,6 @@ void CBullet::Update()
 				IsUse = false;
 			}
 		}
-
-		if (m_pos == Dest)
-		{
-			IsUse = false;
-		}
 	}
 
 	m_pos.x += move.x;
@@ -236,7 +231,7 @@ CBullet* CBullet::Create(D3DXVECTOR3 PLpos, D3DXVECTOR3 Dest, D3DXVECTOR3 Move, 
 		m_pBullets[B_Num]->move.z = 0;
 		m_pBullets[B_Num]->IsPlayer = IsPlayer;
 		m_pBullets[B_Num]->IsUse = true;
-		m_pBullets[B_Num]->Life = 5;
+		m_pBullets[B_Num]->Life = 2.8;
 		m_pBullets[B_Num]->OBJ_ID = B_Num;
 		m_pBullets[B_Num]->Init();
 		//bullet.push_back(CBullet());

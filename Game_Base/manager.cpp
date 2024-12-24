@@ -78,7 +78,7 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	m_pLight->Init();
 
 	//Å‰‚ÌƒV[ƒ“‚Ìİ’è
-	SetMode(CScene::MODE::M_DEBUG);
+	SetMode(CScene::MODE::M_TITLE);
 
 	return S_OK;
 }

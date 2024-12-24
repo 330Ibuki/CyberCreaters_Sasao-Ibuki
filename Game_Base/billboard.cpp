@@ -130,22 +130,22 @@ void CB_board::Update()
 	CPlayerX* pPlayerX = CPlayerX::GetPlayer();
 	if (pKeyBoard->GetPress(DIK_W) == true)
 	{
-		m_pos.y += 1.5;
+		m_pos.y += 2.5;
 	}
 
 	if (pKeyBoard->GetPress(DIK_S) == true)
 	{
-		m_pos.y += -1.5;
+		m_pos.y += -2.5;
 	}
 
 	if (pKeyBoard->GetPress(DIK_A) == true)
 	{
-		m_pos.x += -1.5;
+		m_pos.x += -2.5;
 	}
 
 	if (pKeyBoard->GetPress(DIK_D) == true)
 	{
-		m_pos.x += 1.5;
+		m_pos.x += 2.5;
 	}
 }
 

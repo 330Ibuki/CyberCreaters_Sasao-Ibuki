@@ -56,17 +56,17 @@ HRESULT CStage::Init()
 					{
 						if (value == "1")	//床(小）ほかの床と（5 +（ほかの床の半径のセル）)だけ離す　例：小＋中 = (5+8)セル離す
 						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -440.0f, 0.0f), CGround::GType::SMALL);
+							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::SMALL);
 						}
 
 						else if (value == "2")	//床(中）ほかの床と（8 +（ほかの床の半径のセル）)だけ離す
 						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -440.0f, 0.0f), CGround::GType::MIDDLE);
+							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::MIDDLE);
 						}
 
 						else if (value == "3")	//床(大）ほかの床と（12 +（ほかの床の半径のセル）)だけ離す
 						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -440.0f, 0.0f), CGround::GType::BIG);
+							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::BIG);
 						}
 
 						else if (value == "4")	//天井　複数配置するなら前後24、5セル間隔をとる
@@ -94,25 +94,25 @@ HRESULT CStage::Init()
 							CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::MIDDLE);
 						}
 
-						else if (value == "9")	//すり抜け床(大）
-						{
-							CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::MIDDLE);
-						}
+						//else if (value == "9")	//すり抜け床(大）
+						//{
+						//	CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::MIDDLE);
+						//}
 
 						else if (value == "10")	//アイテム_スコア
 						{
 							CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_SCORE);
 						}
 
-						else if (value == "10.1")	//アイテム_速度
-						{
-							CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_SPD);
-						}
+						//else if (value == "10.1")	//アイテム_速度
+						//{
+						//	CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_SPD);
+						//}
 
-						else if (value == "10.2")	//アイテム_威力
-						{
-							CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_POW);
-						}
+						//else if (value == "10.2")	//アイテム_威力
+						//{
+						//	CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_POW);
+						//}
 
 						else if (value == "10.3")	//アイテム_残機
 						{

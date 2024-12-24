@@ -95,7 +95,7 @@ void CEnemy::Update()
 			{
 				if (m_Flame_Count % 60 == 0)
 				{
-					if (pPlayer->m_pos.x <= m_pos.x - 50)
+					if (pPlayer->m_pos.x <= m_pos.x - 50 && pPlayer->m_pos.y <= m_pos.y + 40)
 					{
 						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, 0, 0), false, true);
 					}
@@ -104,13 +104,13 @@ void CEnemy::Update()
 			
 			else if (EType == E_RapidFire)
 			{
-				if (m_Flame_Count % 30 == 0 && RF_OverHeat == false)
+				if (m_Flame_Count % 20 == 0 && RF_OverHeat == false && pPlayer->m_pos.x <= m_pos.x - 50 )
 				{
 					CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-5, -5, 0), false, true);
 					RF_Count++;
 				}
 
-				else if (m_Flame_Count % 300 == 0 && RF_OverHeat == true)
+				else if (m_Flame_Count % 90 == 0 && RF_OverHeat == true)
 				{
 					RF_OverHeat = false;
 				}
@@ -124,12 +124,9 @@ void CEnemy::Update()
 		
 			else if (EType == E_Speed)
 			{
-				if (m_Flame_Count % 120 == 0)
+				if (m_Flame_Count % 120 == 0 )
 				{
-					if (pPlayer->m_pos.x <= m_pos.x - 100)
-					{
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-10, 0, 0), false, false);
-					}
+						CBullet::Create(D3DXVECTOR3(m_pos.x - 15, m_pos.y + 4.1, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-3, 0, 0), false, false);
 				}
 			}
 
@@ -139,30 +136,30 @@ void CEnemy::Update()
 				{
 					if (EType == E_3Way_Down)
 					{
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, -1.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, -2.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, -1.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x - 6, m_pos.y - 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, -1.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y - 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, -2.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 9, m_pos.y - 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, -1.5, 0), false, false);
 					}
 
 					else if (EType == E_3Way_Up)
 					{
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, 1.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, 2.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, 1.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x - 6, m_pos.y + 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, 1.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, 2.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 9, m_pos.y + 8, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, 1.5, 0), false, false);
 					}
 
 					else if (EType == E_3Way_Left)
 					{
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, 0.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(2.5, 0, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, -0.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y + 6, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, 0.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(2.5, 0, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y - 9, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(1.5, -0.5, 0), false, false);
 					}
 
 					else if (EType == E_3Way_Right)
 					{
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, 0.5, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-2.5, 0, 0), false, false);
-						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, -0.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y + 6, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, 0.5, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-2.5, 0, 0), false, false);
+						CBullet::Create(D3DXVECTOR3(m_pos.x + 8, m_pos.y - 9, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-1.5, -0.5, 0), false, false);
 					}
 				}
 			}
@@ -173,11 +170,6 @@ void CEnemy::Update()
 		IsUse = false;
 		CN_Score::SetScore(E_Score);
 		Uninit();
-	}
-
-	if (E_HP <= 0)
-	{
-		m_bDeath = true;
 	}
 	
 }
@@ -409,7 +401,7 @@ HRESULT CE_Rapid::Init()
 		&m_dwNumMat,
 		&m_pMesh);
 
-	E_HP = 3;
+	E_HP = 8;
 	CEnemy::Init();
 
 	return S_OK;
@@ -473,7 +465,7 @@ HRESULT CE_Speed::Init()
 		&m_dwNumMat,
 		&m_pMesh);
 
-	E_HP = 3;
+	E_HP = 5;
 	CEnemy::Init();
 
 	return S_OK;
@@ -590,7 +582,7 @@ HRESULT CE_3Way_Down::Init()
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 
 	D3DXLoadMeshFromX(
-		"data\\MODEL\\E_E_3WayDown.x",
+		"data\\MODEL\\E_3WayDown.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,

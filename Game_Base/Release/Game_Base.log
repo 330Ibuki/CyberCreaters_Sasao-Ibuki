@@ -1,7 +1,13 @@
-﻿  BG.cpp
-  scene.cpp
+﻿  bullet.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\bullet.cpp(234,29): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  collision.cpp
+  enemy.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(49,30): warning C4305: '引数': 'double' から 'FLOAT' へ切り詰めます。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(129,57): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+  manager.cpp
   コード生成しています。
-  Compiler switch has changed, fall back to full compilation.
-  All 499 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  16 of 607 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
-  Game_Base.vcxproj -> C:\Users\student\Documents\ぷろぐらむ\Game_Base\Game_Base.exe
+  Game_Base.vcxproj -> C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\Game_Base.exe
