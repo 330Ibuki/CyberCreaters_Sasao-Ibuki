@@ -12,6 +12,8 @@ Stage
 #include "block.h"
 //#include "gimic.h"
 
+using namespace std;
+
 //ステージ構築クラス
 
 class CStage
@@ -31,7 +33,7 @@ private:
 	int Lvrow;									//エクセル（行）
 	int Lv;										//エクセル（シート）
 	bool ColReset;								//エクセル（列）のリセット
-	std::vector<std::string> StageData;
-	std::string line;
-	std::string value;
+vector<std::string> StageData;
+string line;
+string value;
 };

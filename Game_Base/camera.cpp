@@ -9,6 +9,7 @@
 #include "camera.h"
 #include "manager.h"
 #include "renderer.h"
+#include "tool.h"
 #include "player.x.h"
 
 /*=============================
@@ -58,6 +59,7 @@ void CCamera::Uninit()
 void CCamera::Update()
 {
 	CPlayerX* pPlayerX = pPlayerX->GetPlayer();
+	CToolPlace* Tool = Tool->GetTool();
 	if (pPlayerX != nullptr)
 	{
 		m_PosR.x = pPlayerX->m_pos.x + 5;
@@ -67,6 +69,17 @@ void CCamera::Update()
 		m_PosV.x = pPlayerX->m_pos.x - 0;
 		m_PosV.y = pPlayerX->m_pos.y + 40;
 		m_PosV.z = pPlayerX->m_pos.z - 200;
+	}
+
+	if (Tool != nullptr)
+	{
+		m_PosR.x = Tool->B_pos.x;
+		m_PosR.y = Tool->B_pos.y + 0;
+		m_PosR.z = Tool->B_pos.z;
+
+		m_PosV.x = Tool->B_pos.x;
+		m_PosV.y = Tool->B_pos.y + 0;
+		m_PosV.z = Tool->B_pos.z - 200;
 	}
 }
 

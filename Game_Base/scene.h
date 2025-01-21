@@ -10,6 +10,7 @@ class CInputKeyboard;
 class CCamera;
 class CLight;
 class CCollision;
+class CToolPlace;
 
 //画面基底クラス
 class CScene
@@ -23,6 +24,7 @@ public:
 		M_GAME,		//ゲーム画面
 		M_RESULT,	//リザルト画面
 		M_DEBUG,	//デバッグ用
+		M_TOOL,		//ツール用
 		M_MAX,			
 	}MODE;
 
@@ -44,6 +46,7 @@ protected:
 	static CCamera* m_pCamera;
 	static CLight* m_pLight;
 	static CCollision* m_pCol;
+	static CToolPlace* m_Tool;
 	bool IsUse;
 	int GMode;
 };
@@ -90,6 +93,18 @@ class CDebug : public CScene
 public:
 	CDebug();
 	~CDebug()override;
+	HRESULT Init()override;
+	void Uninit()override;
+	void Update()override;
+	void Draw()override;
+};
+
+//ステージエディタ
+class CEdit : public CScene
+{
+public:
+	CEdit();
+	~CEdit()override;
 	HRESULT Init()override;
 	void Uninit()override;
 	void Update()override;

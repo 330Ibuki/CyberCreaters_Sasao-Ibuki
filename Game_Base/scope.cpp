@@ -7,6 +7,7 @@
 //インクルード
 #include "scope.h"
 #include "player.x.h"
+#include "tool.h"
 
 //静的メンバ初期化
 
@@ -95,16 +96,23 @@ void CScope::Update()
 {
 
 	CPlayerX* pPlayerX = pPlayerX->GetPlayer();
-
-	if (pPlayerX->SwitchStat == true)
+	if (pPlayerX != nullptr)
 	{
-		CB_board::Update();
+		if (pPlayerX->SwitchStat == true)
+		{
+			CB_board::Update();
+		}
+
+		else
+		{
+			m_pos.x = pPlayerX->m_pos.x;
+			m_pos.y = pPlayerX->m_pos.y + 40;
+		}
 	}
 
 	else
 	{
-		m_pos.x = pPlayerX->m_pos.x;
-		m_pos.y = pPlayerX->m_pos.y + 40;
+		CB_board::Update();
 	}
 
 	m_posOld = m_pos;

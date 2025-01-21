@@ -122,9 +122,9 @@ void CBG::Update()
 	{
 		if (B_Type == BG_GAME)
 		{
-			CPlayerX* player = player->GetPlayer();
-			m_pos.x = player->m_pos.x;
-			m_pos.y = player->m_pos.y;
+			//CPlayerX* player = player->GetPlayer();
+			//m_pos.x = player->m_pos.x;
+			//m_pos.y = player->m_pos.y;
 		}
 	}
 

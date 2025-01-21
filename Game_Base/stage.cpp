@@ -40,140 +40,109 @@ HRESULT CStage::Init()
 	CRenderer* pRenderer = CManager::GetRenderer();
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 
+	int AllNum = 0, TypeNum = 0;
+	float PosX = 0, PosY = 0, PosZ = 0;
 	if (Lv == 1)
 	{
-		StageData = { "data\\STAGE\\Stage_large.csv" };
-		for (const auto& SData : StageData)
+		ifstream SaveData("data\\TOOL\\STAGE\\Stage_03.txt");
+		if (SaveData.is_open())
 		{
-			std::ifstream file(SData);
+			getline(SaveData, line);
+			AllNum = stoi(line);
 
-			if (file.is_open())
+			for (int i = 0; i < AllNum; i++)
 			{
-				while (getline(file, line))
+				getline(SaveData, line);
+				TypeNum = stoi(line);
+
+				getline(SaveData, line);
+				PosX = stof(line);
+
+				getline(SaveData, line);
+				PosY = stof(line);
+
+				getline(SaveData, line);
+				PosZ = stof(line);
+
+				switch (TypeNum)
 				{
-					std::stringstream ss(line);
-					while (getline(ss, value, ','))
-					{
-						if (value == "1")	//床(小）ほかの床と（5 +（ほかの床の半径のセル）)だけ離す　例：小＋中 = (5+8)セル離す
-						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::SMALL);
-						}
+				case 1:
+					CGround::Create(D3DXVECTOR3(PosX,PosY,PosZ),CGround::GType::SMALL);	//床（小）
+					break;
 
-						else if (value == "2")	//床(中）ほかの床と（8 +（ほかの床の半径のセル）)だけ離す
-						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::MIDDLE);
-						}
+				case 2:
+					CGround::Create(D3DXVECTOR3(PosX, PosY, PosZ), CGround::GType::MIDDLE);	//床（中）
+					break;
 
-						else if (value == "3")	//床(大）ほかの床と（12 +（ほかの床の半径のセル）)だけ離す
-						{
-							CGround::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -40.0f - (Lvrow * 10), 0.0f), CGround::GType::BIG);
-						}
+				case 3:
+					CGround::Create(D3DXVECTOR3(PosX, PosY, PosZ), CGround::GType::BIG);	//床（大）
+					break;
 
-						else if (value == "4")	//天井　複数配置するなら前後24、5セル間隔をとる
-						{
-							CFloorRoof::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), 0.0f, 0.0f));
-						}
+				case 4:
+					CFloorRoof::Create(D3DXVECTOR3(PosX, PosY, PosZ));	//天井
+					break;
 
-						else if (value == "5")	//壁
-						{
-							CFloorWall::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f));
-						}
+				case 5:
+					CFloorWall::Create(D3DXVECTOR3(PosX, PosY, PosZ));	//壁
+					break;
 
-						else if (value == "6")	//ブロック
-						{
-							CBlock::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f));
-						}
+				case 6:
+					CBlock::Create(D3DXVECTOR3(PosX, PosY, PosZ));	//ブロック
+					break;
 
-						else if (value == "7")	//すり抜け床(小)
-						{
-							CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::SMALL);
-						}
+				case 7:
+					CPlatform::Create(D3DXVECTOR3(PosX, PosY, PosZ),CPlatform::PType::SMALL);	//すりぬけ（小）
+					break;
 
-						else if (value == "8")	//すり抜け床(中）
-						{
-							CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::MIDDLE);
-						}
+				case 8:
+					CPlatform::Create(D3DXVECTOR3(PosX, PosY, PosZ),CPlatform::PType::MIDDLE);	//すりぬけ（中）
+					break;
 
-						//else if (value == "9")	//すり抜け床(大）
-						//{
-						//	CPlatform::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CPlatform::PType::MIDDLE);
-						//}
+				case 9:
+					CItem::Create(D3DXVECTOR3(PosX, PosY, PosZ),CItem::ITEM::I_SCORE);	//スコアアイテム
+					break;
 
-						else if (value == "10")	//アイテム_スコア
-						{
-							CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_SCORE);
-						}
+				case 10:
+					CItem::Create(D3DXVECTOR3(PosX, PosY, PosZ), CItem::ITEM::I_EXTEND);	//残機アイテム
+					break;
 
-						//else if (value == "10.1")	//アイテム_速度
-						//{
-						//	CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_SPD);
-						//}
+				case 11:
+					CSG::Create(D3DXVECTOR3(PosX, PosY, PosZ), true);	//スタート
+					CPlayerX::Create(D3DXVECTOR3(PosX, PosY, PosZ));
+					break;
 
-						//else if (value == "10.2")	//アイテム_威力
-						//{
-						//	CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_POW);
-						//}
+				case 12:
+					CSG::Create(D3DXVECTOR3(PosX, PosY, PosZ), false);	//ゴール
+					break;
 
-						else if (value == "10.3")	//アイテム_残機
-						{
-							CItem::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 0.0f), CItem::ITEM::I_EXTEND);
-						}
+				case 13:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_Normal);	//敵_Normal
+					break;
 
-						else if (value == "11")	//スタート
-						{
-							CSG::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), true);
-							CPlayerX::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), 0.0f - (Lvrow * 10), 0.0f));
-						}
+				case 14:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_RapidFire);	//敵_Rapid
+					break;
 
-						else if (value == "12")	//ゴール
-						{
-							CSG::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), false);
-						}
+				case 15:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_Speed);	//敵_Sniper
+					break;
 
-						else if (value == "13")	//敵_通常
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_Normal);
-						}
+				case 16:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_3Way_Up);	//敵_3W_up
+					break;
 
-						else if (value == "13.1")	//敵_速射
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_RapidFire);
-						}
+				case 17:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_3Way_Down);	//敵_3W_Down
+					break;
 
-						else if (value == "13.2")	//敵_高速弾
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_Speed);
-						}
+				case 18:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_3Way_Left);	//敵_3W_Left
+					break;
 
-						else if (value == "13.3")	//敵_三方向上
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_3Way_Up);
-						}
-
-						else if (value == "13.4")	//敵_三方向下
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_3Way_Down);
-						}
-
-						else if (value == "13.5")	//敵_三方向左（右方向に発射）
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_3Way_Left);
-						}
-
-						else if (value == "13.6")	//敵_三方向右（左方向に発射）
-						{
-							CEnemy::Create(D3DXVECTOR3(0.0f + (Lvcol * 10), -0.0f - (Lvrow * 10), 20.0f), CEnemy::E_TYPE::E_3Way_Right);
-						}
-
-						Lvcol++;
-					}
-					Lvcol = 0;
-					Lvrow++;
+				case 19:
+					CEnemy::Create(D3DXVECTOR3(PosX, PosY, PosZ), CEnemy::E_TYPE::E_3Way_Right);	//敵_3W_Right
+					break;
 				}
-				file.close();
-				Lvcol = 0;
-				Lvrow = 0;
-				Lv++;
 			}
 
 		}

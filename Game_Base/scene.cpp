@@ -22,6 +22,7 @@
 #include "item.h"
 #include "sound.h"
 #include "number.h"
+#include "tool.h"
 
 
 //静的メンバ初期化
@@ -31,6 +32,7 @@ CCamera* CScene::m_pCamera = nullptr;
 CLight* CScene::m_pLight = nullptr;
 CInputKeyboard* CScene::m_pKeyboard = nullptr;
 CCollision* CScene::m_pCol = nullptr;
+CToolPlace* CScene::m_Tool = nullptr;
 
 /*=======================
 基底クラス:CScene
@@ -164,6 +166,21 @@ void CScene::Update()
 			}
 		}
 	}
+
+	else if (m_Mode == M_TOOL)
+	{
+		if (IsUse == false)
+		{
+			CScene::Uninit();
+			CManager::SetMode(M_TITLE);
+		}
+
+		if (IsUse == true)
+		{
+			m_Tool->GetTool();
+			m_Tool->Update();
+		}
+	}
 }
 
 /*============================
@@ -209,6 +226,12 @@ CScene* CScene::Create(MODE mode)
 		case M_DEBUG:
 			m_apScene = new CDebug();
 			m_apScene->m_Mode = M_DEBUG;
+			m_apScene->Init();
+			break;
+
+		case M_TOOL:
+			m_apScene = new CEdit();
+			m_apScene->m_Mode = M_TOOL;
 			m_apScene->Init();
 			break;
 
@@ -419,15 +442,16 @@ HRESULT CDebug::Init()
 	m_pCol->Init();
 
 	//生成
-	CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_OPEN);
-	CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_PLAY);
+	//CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_OPEN);
+	//CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_PLAY);
+	CStage::LoadStage(1);
 	CBG::Create(CBG::BG_Type::BG_GAME);
 	CUI::Create(D3DXVECTOR3(-70, -50, 0), CUI::UType::UI_LIFE);
 	CUI::Create(D3DXVECTOR3(120, -50, 0), CUI::UType::UI_SCORE);
 	CN_Stock::Create(D3DXVECTOR3(-80, -50, 0));
 	CN_Score::Create(D3DXVECTOR3(165, -50, 0));
 	CScope::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	CStage::LoadStage(1);
+
 	return S_OK;
 }
 
@@ -455,6 +479,65 @@ void CDebug::Update()
 =============================*/
 
 void CDebug::Draw()
+{
+	CScene::Draw();
+}
+
+/*==============================================
+//配置ツール
+==============================================*/
+
+/*============================
+//コンストラクタ・デストラクタ
+============================*/
+
+CEdit::CEdit()
+{
+
+}
+
+CEdit::~CEdit()
+{
+
+}
+
+/*============================
+//初期化
+=============================*/
+
+HRESULT CEdit::Init()
+{
+	CScene::Init();
+
+	//生成
+	m_Tool->Active();
+
+	return S_OK;
+}
+
+/*============================
+//終了
+=============================*/
+
+void CEdit::Uninit()
+{
+	CScene::Uninit(); 
+}
+
+/*============================
+//更新
+=============================*/
+
+void CEdit::Update()
+{
+	CScene::Update();
+}
+
+/*============================
+//描画
+=============================*/
+
+void CEdit::Draw()
 {
 	CScene::Draw();
 }
