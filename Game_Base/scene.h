@@ -39,6 +39,7 @@ public:
 private:
 	MODE m_Mode;
 	static CScene* m_apScene;
+	bool PTActive;
 
 protected:
 	//static CRenderer* m_pRenderer;

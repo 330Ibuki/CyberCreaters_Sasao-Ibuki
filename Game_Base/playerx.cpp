@@ -38,6 +38,8 @@ CPlayerX::CPlayerX() : CObject(m_Priority = 1)
 	Dodge = true;
 	m_WallLand = false;
 	m_bDeath = false;
+	m_Ammo = 5;
+	m_CoolDown = 60;
 	//for (int i = 0; i < PARTS; i++)
 	//{
 	//	m_apModel[i] = new CModelParts();
@@ -182,11 +184,29 @@ void CPlayerX::Update()
 				move.y = .0f;
 				m_PJump = 2;
 			}
-
-			if (pKeyBoard->GetTrigger(DIK_SPACE) == true)
+			if (m_Ammo > 0)
 			{
-				CBullet::Create(m_pos,pScope->m_pos,D3DXVECTOR3(0,0,0),true,true);
+				if (pKeyBoard->GetTrigger(DIK_SPACE) == true)
+				{
+					CBullet::Create(m_pos, pScope->m_pos, D3DXVECTOR3(0, 0, 0), true, true);
+					m_Ammo--;
+				}
 			}
+
+			else
+			{
+				if (m_CoolDown > 0)
+				{
+					m_CoolDown--;
+				}
+
+				else
+				{
+					m_CoolDown = 60;
+					m_Ammo = 5;
+				}
+			}
+
 		}
 
 		m_posOld = m_pos;

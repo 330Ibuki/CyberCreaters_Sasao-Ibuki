@@ -39,6 +39,8 @@ private:
 	int m_PJump;
 	bool m_Jump;
 	int m_life;
+	int m_Ammo;
+	int m_CoolDown;
 	bool Dodge;
 	static CModelParts* m_apModel[PARTS];
 };

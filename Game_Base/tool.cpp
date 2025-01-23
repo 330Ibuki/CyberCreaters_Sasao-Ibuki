@@ -61,12 +61,20 @@ void CToolPlace::Update()
 	CTP_img* Img[Place_M] = {};
 
 	//初回処理
-	if (TP->IsFirst == true || TP->B_CurMax <= 0)
+	if (TP->IsFirst == true)
 	{
-		CScope::Create(D3DXVECTOR3(0, 0, 0));
+		CTP_SaveLoad::Load();
+		TP->B_pos = D3DXVECTOR3(0, 0, 0);
 		CTP_img::Create(D3DXVECTOR3(0, 0, 0), 1);
+		TP->B_CurMax = CTP_img::GetImgNum();
+		TP->B_Num = CTP_img::GetImgNum();
 		TP->IsFirst = false;
-		//TP->B_Num++;
+	}
+
+	if (TP->B_CurMax <= 0)
+	{
+		CTP_img::Create(D3DXVECTOR3(0, 0, 0), 1);
+		TP->B_pos = D3DXVECTOR3(0,0,0);
 		TP->B_CurMax++;
 	}
 
@@ -78,37 +86,37 @@ void CToolPlace::Update()
 	/*===================================移動処理==============================*/
 	if (pKeyBoard->GetPress(DIK_W) == true) //up
 	{
-		TP->B_pos.y += 2.5f;
+		TP->B_pos.y += 0.5f;
 		if (Img[TP->B_Num] != nullptr)
 		{
-			Img[TP->B_Num]->m_pos.y += 2.5f;
+			Img[TP->B_Num]->m_pos.y += 0.5f;
 		}
 	}
 
 	if (pKeyBoard->GetPress(DIK_S) == true) //down
 	{
-		TP->B_pos.y -= 2.5f;
+		TP->B_pos.y -= 0.5f;
 		if (Img[TP->B_Num] != nullptr)
 		{
-			Img[TP->B_Num]->m_pos.y -= 2.5f;
+			Img[TP->B_Num]->m_pos.y -= 0.5f;
 		}
 	}
 
 	if (pKeyBoard->GetPress(DIK_A) == true) //left
 	{
-		TP->B_pos.x -= 2.5f;
+		TP->B_pos.x -= 0.5f;
 		if (Img[TP->B_Num] != nullptr)
 		{
-			Img[TP->B_Num]->m_pos.x -= 2.5f;
+			Img[TP->B_Num]->m_pos.x -= 0.5f;
 		}
 	}
 
 	if (pKeyBoard->GetPress(DIK_D) == true) //right
 	{
-		TP->B_pos.x += 2.5f;
+		TP->B_pos.x += 0.5f;
 		if (Img[TP->B_Num] != nullptr)
 		{
-			Img[TP->B_Num]->m_pos.x += 2.5f;
+			Img[TP->B_Num]->m_pos.x += 0.5f;
 		}
 	}
 
@@ -123,34 +131,28 @@ void CToolPlace::Update()
 		TP->B_CurMax++;
 	}
 
-	else if (pKeyBoard->GetTrigger(DIK_BACKSPACE) == true) //Delete
-	{
-		Img[TP->B_Num]->IsUse = false;
-		TP->B_CurMax--;
-		if (TP->B_Num >= TP->B_CurMax)
-		{
-			TP->B_Num = TP->B_CurMax;
-		}
-	}
+
 	/*===================================生成管理==============================*/
 
 	/*===================================選択処理==============================*/
 	else if (pKeyBoard->GetTrigger(DIK_Z) == true) //Prev
 	{
 		TP->B_Num--;
-		if (TP->B_Num < 0)
+		if (TP->B_Num <= 0)
 		{
-			TP->B_Num = TP->B_CurMax;
+			TP->B_Num = 0;
 		}
+		TP->B_pos = Img[TP->B_Num]->m_pos;
 	}
 
 	else if (pKeyBoard->GetTrigger(DIK_C) == true) //Next
 	{
 		TP->B_Num++;
-		if (TP->B_Num > TP->B_CurMax)
+		if (TP->B_Num >= TP->B_CurMax)
 		{
 			TP->B_Num = 0;
 		}
+		TP->B_pos = Img[TP->B_Num]->m_pos;
 	}
 
 	else if (pKeyBoard->GetTrigger(DIK_Q) == true)	//前のオブジェクトへ
@@ -178,11 +180,6 @@ void CToolPlace::Update()
 	else if (pKeyBoard->GetTrigger(DIK_F1) == true)	//セーブ
 	{//データ数は現在の最大数
 		CTP_SaveLoad::Save();
-	}
-
-	else if (pKeyBoard->GetTrigger(DIK_F2) == true)	//ロード
-	{
-		CTP_SaveLoad::Load();
 	}
 	/*===================================セーブロード==============================*/
 }
@@ -482,6 +479,11 @@ CTP_img* CTP_img::Getimg(int Num)
 CTP_img* CTP_img::Create(D3DXVECTOR3 pos, int Num)
 {
 	int PlaceNum = CTP_img::GetImgNum();
+	if (Place_Img[PlaceNum] != nullptr)
+	{
+		Place_Img[PlaceNum] = nullptr;
+	}
+
 	if (Place_Img[PlaceNum] == nullptr)
 	{
 		Place_Img[PlaceNum] = new CTP_img();

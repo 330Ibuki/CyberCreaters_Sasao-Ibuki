@@ -46,6 +46,7 @@ CScene::CScene()
 {
 	m_Mode = M_NONE;
 	IsUse = true;
+	PTActive = false;
 	GMode = NULL;
 }
 
@@ -99,10 +100,16 @@ void CScene::Update()
 
 	if (m_Mode == M_TITLE)
 	{
-		if (IsUse == false)
+		if (IsUse == false && PTActive == false)
 		{
 			CScene::Uninit();
 			CManager::SetMode(M_DEBUG);
+		}
+
+		if (IsUse == false && PTActive == true)
+		{
+			CScene::Uninit();
+			CManager::SetMode(M_TOOL);
 		}
 
 		if (IsUse == true)
@@ -110,6 +117,12 @@ void CScene::Update()
 			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
 			{
 				IsUse = false;
+			}
+
+			if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+			{
+				IsUse = false;
+				PTActive = true;
 			}
 		}
 	}
@@ -157,12 +170,24 @@ void CScene::Update()
 			CManager::SetMode(M_TITLE);
 		}
 
+		if (IsUse == false && PTActive == true)
+		{
+			CScene::Uninit();
+			CManager::SetMode(M_TOOL);
+		}
+
 		if (IsUse == true)
 		{
 			m_pCol->Update();
 			if (Stock->StockNum < 0)
 			{
 				IsUse = false;
+			}
+
+			if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+			{
+				IsUse = false;
+				PTActive = true;
 			}
 		}
 	}

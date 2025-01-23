@@ -118,13 +118,13 @@ void CUI::Update()
 		if (UI_type == UI_LIFE)
 		{
 			m_pos.x = pPlayerX->m_pos.x - 90;
-			m_pos.y = pPlayerX->m_pos.y - 60;
+			m_pos.y = pPlayerX->m_pos.y + 70;
 		}
 
 		else if (UI_type == UI_SCORE)
 		{
 			m_pos.x = pPlayerX->m_pos.x + 100;
-			m_pos.y = pPlayerX->m_pos.y - 60;
+			m_pos.y = pPlayerX->m_pos.y + 70;
 		}
 
 		else if(UI_type == UI_S_GUIDE)

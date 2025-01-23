@@ -44,7 +44,7 @@ HRESULT CStage::Init()
 	float PosX = 0, PosY = 0, PosZ = 0;
 	if (Lv == 1)
 	{
-		ifstream SaveData("data\\TOOL\\STAGE\\Stage_03.txt");
+		ifstream SaveData("data\\TOOL\\STAGE\\Stage_XX.txt");
 		if (SaveData.is_open())
 		{
 			getline(SaveData, line);

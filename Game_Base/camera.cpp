@@ -74,11 +74,11 @@ void CCamera::Update()
 	if (Tool != nullptr)
 	{
 		m_PosR.x = Tool->B_pos.x;
-		m_PosR.y = Tool->B_pos.y + 0;
+		m_PosR.y = Tool->B_pos.y + 50;
 		m_PosR.z = Tool->B_pos.z;
 
 		m_PosV.x = Tool->B_pos.x;
-		m_PosV.y = Tool->B_pos.y + 0;
+		m_PosV.y = Tool->B_pos.y + 50;
 		m_PosV.z = Tool->B_pos.z - 200;
 	}
 }

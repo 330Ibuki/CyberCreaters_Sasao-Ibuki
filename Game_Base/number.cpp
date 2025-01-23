@@ -113,7 +113,7 @@ void CN_Score::Update()
 		for (int i = 0; i < SCORENUM; i++)
 		{
 			m_Score[i]->m_pos.x = Player->m_pos.x + 148 - (15 * i);
-			m_Score[i]->m_pos.y = Player->m_pos.y - 65;
+			m_Score[i]->m_pos.y = Player->m_pos.y + 65;
 		}
 		
 		m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
@@ -293,7 +293,7 @@ void CN_Stock::Update()
 	else
 	{
 		m_pos.x = Player->m_pos.x - 100;
-		m_pos.y = Player->m_pos.y - 60;
+		m_pos.y = Player->m_pos.y + 70;
 
 		m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
 
