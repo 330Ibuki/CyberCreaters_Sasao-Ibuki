@@ -22,6 +22,7 @@ CN_Score::CN_Score() : CB_board(m_Priority = 4)
 {
 	DispNum = NULL;
 	DoOnce = true;
+	CurScore = NULL;
 	ScoreNum++;
 }
 
@@ -77,6 +78,15 @@ HRESULT CN_Score::Init()
 	pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
 
 	m_pVtxBuff->Unlock();
+
+	//ifstream Score("data\\SCORE\\Score.txt");
+	//if (Score.is_open())
+	//{
+	//	string line;
+	//	getline(Score, line);
+	//	CurScore = stoi(line);
+	//}
+
 	return S_OK;
 }
 
@@ -102,14 +112,7 @@ void CN_Score::Update()
 	}
 
 	else
-	{
-
-		if (DoOnce == true)
-		{
-
-		}
-		 
-
+	{		 
 		for (int i = 0; i < SCORENUM; i++)
 		{
 			m_Score[i]->m_pos.x = Player->m_pos.x + 148 - (15 * i);
@@ -125,6 +128,13 @@ void CN_Score::Update()
 		pVtx[3].tex = D3DXVECTOR2(0.1f + (0.1 * DispNum), 1.0f);
 
 		m_pVtxBuff->Unlock();
+
+		ofstream Score("data\\SCORE\\Score.txt");
+		if (Score.is_open())
+		{
+			Score << CurScore << endl;	//ƒf[ƒ^”
+			Score.close();
+		}
 
 		if (IsUse == false)
 		{

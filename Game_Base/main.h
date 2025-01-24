@@ -36,6 +36,8 @@
 #define SENTER (D3DXVECTOR3(640.0f,360.0f,0.0f)) 
 #define MAX_MOTIONMODE (8)
 
+using namespace std;
+
 //’¸“_î•ñ\‘¢‘Ì‚Ì’è‹`
 struct VERTEX_2D
 {

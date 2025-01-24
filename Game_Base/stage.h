@@ -12,7 +12,7 @@ Stage
 #include "block.h"
 //#include "gimic.h"
 
-using namespace std;
+//using namespace std;
 
 //ステージ構築クラス
 

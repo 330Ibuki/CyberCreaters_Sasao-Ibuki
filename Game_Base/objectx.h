@@ -40,6 +40,7 @@ protected:
 
 private:
 	static CObjectX* m_apObjectX[MOBJ];
+	static int ObjNum;
 };
 
 #endif // !_OBJECTX_H_

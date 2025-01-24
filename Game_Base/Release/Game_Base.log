@@ -1,13 +1,51 @@
-﻿  bullet.cpp
-C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\bullet.cpp(234,29): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+﻿  BG.cpp
+  UI.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\UI.cpp(137,17): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\UI.cpp(147,17): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  billboard.cpp
+  block.cpp
+  bullet.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\bullet.cpp(236,29): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  camera.cpp
   collision.cpp
   enemy.cpp
 C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(49,30): warning C4305: '引数': 'double' から 'FLOAT' へ切り詰めます。
 C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(129,57): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+  gimic.cpp
+  input.cpp
+  item.cpp
+  light.cpp
+  main.cpp
   manager.cpp
+  modelparts.cpp
+  number.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(125,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(126,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(127,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(128,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(311,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(312,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(313,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\number.cpp(314,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+  object.cpp
+  object2d.cpp
+  object3d.cpp
+  objectx.cpp
+  コンパイル中...
+  player.cpp
+  playerx.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\playerx.cpp(148,20): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\playerx.cpp(159,19): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\playerx.cpp(177,19): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  renderer.cpp
+  scene.cpp
+  scope.cpp
+  sound.cpp
+  stage.cpp
+  tool.cpp
   コード生成しています。
-  16 of 607 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+  349 of 563 functions (62.0%) were compiled, the rest were copied from previous compilation.
+    33 functions were new in current compilation
+    51 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   Game_Base.vcxproj -> C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\Game_Base.exe

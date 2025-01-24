@@ -15,7 +15,7 @@
 #include "manager.h"
 
 #define Place_M	(1000)
-using namespace std;
+
 
 class CToolPlace
 {

@@ -1,6 +1,6 @@
 /*==========================
 #
-# Item 
+# 
 #
 #
 ============================*/
@@ -116,7 +116,7 @@ void CB_board::Uninit()
 		m_ptex = nullptr;
 	}
 
-	CObjectX::Uninit();
+	//CObjectX::Uninit();
 
 }
 

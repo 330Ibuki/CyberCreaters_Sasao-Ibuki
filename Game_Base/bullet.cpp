@@ -25,6 +25,7 @@ CBullet::CBullet() : CB_board(m_Priority = 5)
 {
 	IsPlayer = false;
 	IsUse = false;
+	IsChase = false;
 	move = {};
 	Dest = {};
 	Life = NULL;
@@ -135,6 +136,8 @@ void CBullet::Uninit()
 		m_pVtxBuff = nullptr;
 	}
 
+	//Release();
+
 }
 
 /*====================
@@ -148,7 +151,6 @@ void CBullet::Update()
 	if (IsUse == false)
 	{
 		Uninit();
-		//bullet.erase(this);
 	}
 
 	if (IsUse == true)

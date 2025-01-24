@@ -13,6 +13,7 @@
 
 //静的メンバ初期化
 CObjectX* CObjectX::m_apObjectX[MOBJ] = {};
+int CObjectX::ObjNum = NULL;
 
 /*=====================================
 //コンストラクタ・デストラクタ
@@ -33,11 +34,12 @@ CObjectX::CObjectX(int nPriority) : CObject(m_Priority)
 	m_Priority = nPriority;
 	m_Flame_Count = NULL;
 	OBJ_ID = NULL;
+	ObjNum++;
 }
 
 CObjectX::~CObjectX()
 {
-
+	ObjNum--;
 }
 
 /*====================================
@@ -100,7 +102,7 @@ void CObjectX::Uninit()
 		m_pVtxBuff->Release();
 		m_pVtxBuff = nullptr;
 	}
-	this->Release();
+Release();
 }
 
 /*====================================

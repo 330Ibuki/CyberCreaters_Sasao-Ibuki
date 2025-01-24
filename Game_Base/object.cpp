@@ -109,7 +109,6 @@ void CObject::Release()
 		{
 			delete m_apObject[pri][nID];
 			m_apObject[pri][nID] = nullptr;
-			break;
 		}
 	}
 }
