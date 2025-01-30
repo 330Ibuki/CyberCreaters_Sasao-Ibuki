@@ -83,6 +83,7 @@ void CPlayerX::Uninit()
 		if (m_apModel[i] != nullptr)
 		{
 			m_apModel[i]->Uninit();
+			//delete m_apModel[i];
 			m_apModel[i] = nullptr;
 		}
 	}
@@ -261,13 +262,13 @@ void CPlayerX::Draw()
 		//ワールドマトリックス設定
 		pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 
-		for (int i = 0; i < PARTS; i++)
-		{
-			if (m_apModel[i] != nullptr)
-			{
-				m_apModel[i]->Draw();
-			}
-		}
+		//for (int i = 0; i < PARTS; i++)
+		//{
+		//	if (m_apModel[i] != nullptr)
+		//	{
+				m_apModel[0]->Draw();
+		//	}
+		//}
 	}
 }
 

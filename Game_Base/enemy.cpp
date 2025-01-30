@@ -169,7 +169,7 @@ void CEnemy::Update()
 	{
 		IsUse = false;
 		CN_Score::SetScore(E_Score);
-		Uninit();
+		//Uninit();
 	}
 	
 }
@@ -344,7 +344,8 @@ HRESULT CE_Normal::Init()
 =============================*/
 void CE_Normal::Uninit()
 {
-	CEnemy::Uninit();
+	CEnemy::Uninit(); 
+	Release();
 }
 
 /*=============================
@@ -352,12 +353,21 @@ void CE_Normal::Uninit()
 =============================*/
 void CE_Normal::Update()
 {
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
 
-	if (E_HP >= 0)
+	if (E_HP > 0)
 	{
 		CEnemy::Update();
 	}
-	
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -365,7 +375,10 @@ void CE_Normal::Update()
 =============================*/
 void CE_Normal::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 /*======================
@@ -413,6 +426,7 @@ HRESULT CE_Rapid::Init()
 void CE_Rapid::Uninit()
 {
 	CEnemy::Uninit();
+	Release();
 }
 
 /*=============================
@@ -420,7 +434,21 @@ void CE_Rapid::Uninit()
 =============================*/
 void CE_Rapid::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -428,7 +456,10 @@ void CE_Rapid::Update()
 =============================*/
 void CE_Rapid::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 
@@ -477,6 +508,7 @@ HRESULT CE_Speed::Init()
 void CE_Speed::Uninit()
 {
 	CEnemy::Uninit();
+	Release();
 }
 
 /*=============================
@@ -484,7 +516,21 @@ void CE_Speed::Uninit()
 =============================*/
 void CE_Speed::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -492,7 +538,10 @@ void CE_Speed::Update()
 =============================*/
 void CE_Speed::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 /*======================
@@ -540,6 +589,7 @@ HRESULT CE_3Way_Up::Init()
 void CE_3Way_Up::Uninit()
 {
 	CEnemy::Uninit();
+	Release();
 }
 
 /*=============================
@@ -547,7 +597,21 @@ void CE_3Way_Up::Uninit()
 =============================*/
 void CE_3Way_Up::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -555,7 +619,10 @@ void CE_3Way_Up::Update()
 =============================*/
 void CE_3Way_Up::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 /*======================
@@ -603,6 +670,7 @@ HRESULT CE_3Way_Down::Init()
 void CE_3Way_Down::Uninit()
 {
 	CEnemy::Uninit();
+	Release();
 }
 
 /*=============================
@@ -610,7 +678,21 @@ void CE_3Way_Down::Uninit()
 =============================*/
 void CE_3Way_Down::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -618,7 +700,10 @@ void CE_3Way_Down::Update()
 =============================*/
 void CE_3Way_Down::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 /*======================
@@ -666,6 +751,7 @@ HRESULT CE_3Way_Left::Init()
 void CE_3Way_Left::Uninit()
 {
 	CEnemy::Uninit();
+	Release();
 }
 
 /*=============================
@@ -673,7 +759,21 @@ void CE_3Way_Left::Uninit()
 =============================*/
 void CE_3Way_Left::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -681,7 +781,10 @@ void CE_3Way_Left::Update()
 =============================*/
 void CE_3Way_Left::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }
 
 /*======================
@@ -728,7 +831,8 @@ HRESULT CE_3Way_Right::Init()
 =============================*/
 void CE_3Way_Right::Uninit()
 {
-	CEnemy::Init();
+	CEnemy::Uninit(); 
+	Release();
 }
 
 /*=============================
@@ -736,7 +840,21 @@ void CE_3Way_Right::Uninit()
 =============================*/
 void CE_3Way_Right::Update()
 {
-	CEnemy::Update();
+	if (m_bDeath == true)
+	{
+		Uninit();
+	}
+
+	if (E_HP > 0)
+	{
+		CEnemy::Update();
+	}
+
+	if (E_HP <= 0)
+	{
+		CN_Score::SetScore(E_Score);
+		m_bDeath = true;
+	}
 }
 
 /*=============================
@@ -744,5 +862,8 @@ void CE_3Way_Right::Update()
 =============================*/
 void CE_3Way_Right::Draw()
 {
-	CObjectX::Draw();
+	if (m_bDeath == false)
+	{
+		CObjectX::Draw();
+	}
 }

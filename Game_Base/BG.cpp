@@ -111,6 +111,7 @@ HRESULT CBG::Init()
 void CBG::Uninit()
 {
 	CB_board::Uninit();
+	Release();
 }
 
 /*=========================
@@ -118,19 +119,19 @@ void CBG::Uninit()
 ==========================*/
 void CBG::Update()
 {
-	if (IsUse == true)
+	if (IsUse == false)
 	{
-		if (B_Type == BG_GAME)
-		{
-			//CPlayerX* player = player->GetPlayer();
-			//m_pos.x = player->m_pos.x;
-			//m_pos.y = player->m_pos.y;
-		}
+	CBG::Uninit();
 	}
 
 	else
 	{
-		CBG::Uninit();
+		if (B_Type == BG_GAME)
+		{
+			CPlayerX* player = player->GetPlayer();
+			m_pos.x = player->m_pos.x;
+			m_pos.y = player->m_pos.y;
+		}
 	}
 }
 

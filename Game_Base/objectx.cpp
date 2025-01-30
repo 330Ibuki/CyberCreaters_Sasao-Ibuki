@@ -102,7 +102,7 @@ void CObjectX::Uninit()
 		m_pVtxBuff->Release();
 		m_pVtxBuff = nullptr;
 	}
-Release();
+
 }
 
 /*====================================
@@ -120,64 +120,67 @@ void CObjectX::Update()
 
 void CObjectX::Draw()
 {
-	//デバイス取得
-	CRenderer* pRenderer = CManager::GetRenderer();
-	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
-	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
-	D3DMATERIAL9 matDef;			//マテリアル保存用
-	D3DXMATERIAL* pMat;				//マテリアルデータへのポインタ
-
-	//pDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-	//	D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
-
-	//ワールドマトリックス初期化
-	D3DXMatrixIdentity(&m_mtxWorld);
-
-	//ワールド変換行列の作成
-
-	//向きの反映
-	D3DXMatrixRotationYawPitchRoll(&mtxRot,
-		m_rot.y, m_rot.x, m_rot.z);
-
-	//位置の反映
-	D3DXMatrixTranslation(&mtxTrans,
-		m_pos.x, m_pos.y, m_pos.z);
-
-	//ワールド変換行列の設定
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
-
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
-
-	//ワールドマトリックス設定
-	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
-
-	//マテリアル取得
-	pDevice->GetMaterial(&matDef);
-
-	//マテリアルデータへのポインタ取得
-	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
-
-
-	for (int i = 0; i < (int)m_dwNumMat; i++)
+	if (IsUse == true)
 	{
-		//マテリアル設定
-		pDevice->SetMaterial(&pMat[i].MatD3D);
+		//デバイス取得
+		CRenderer* pRenderer = CManager::GetRenderer();
+		LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+		D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
+		D3DMATERIAL9 matDef;			//マテリアル保存用
+		D3DXMATERIAL* pMat;				//マテリアルデータへのポインタ
 
-		//テクスチャ設定
-		pDevice->SetTexture(0, m_ptex);
+		//pDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
+		//	D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
-		pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
-		pDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
-		//pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+		//ワールドマトリックス初期化
+		D3DXMatrixIdentity(&m_mtxWorld);
 
-		//モデル描画
-		m_pMesh->DrawSubset(i);
+		//ワールド変換行列の作成
 
-		pDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+		//向きの反映
+		D3DXMatrixRotationYawPitchRoll(&mtxRot,
+			m_rot.y, m_rot.x, m_rot.z);
+
+		//位置の反映
+		D3DXMatrixTranslation(&mtxTrans,
+			m_pos.x, m_pos.y, m_pos.z);
+
+		//ワールド変換行列の設定
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+		//ワールドマトリックス設定
+		pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+		//マテリアル取得
+		pDevice->GetMaterial(&matDef);
+
+		//マテリアルデータへのポインタ取得
+		pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+
+		for (int i = 0; i < (int)m_dwNumMat; i++)
+		{
+			//マテリアル設定
+			pDevice->SetMaterial(&pMat[i].MatD3D);
+
+			//テクスチャ設定
+			pDevice->SetTexture(0, m_ptex);
+
+			pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
+			pDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+			//pDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+
+			//モデル描画
+			m_pMesh->DrawSubset(i);
+
+			pDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+		}
+
+		//マテリアルを戻す
+		pDevice->SetMaterial(&matDef);
 	}
-
-	//マテリアルを戻す
-	pDevice->SetMaterial(&matDef);
 }
 
 /*====================================

@@ -563,10 +563,6 @@ void CCollision::Update()
 						{
 							pBullet[i]->IsUse = false;
 							pEnemy[enemy]->E_HP--;
-							if (pEnemy[enemy]->E_HP <= 0)
-							{
-								pEnemy[enemy]->m_bDeath = true;
-							}
 						}
 					}
 

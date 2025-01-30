@@ -110,7 +110,12 @@ void CUI::Uninit()
 ==========================*/
 void CUI::Update()
 {
-	if (IsUse == true)
+	if (IsUse == false)
+	{
+		CUI::Uninit();
+	}
+
+	else
 	{
 		VERTEX_3D* pVtx;
 		CPlayerX* pPlayerX = pPlayerX->GetPlayer();
@@ -160,11 +165,6 @@ void CUI::Update()
 			pVtx[3].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, UI_A);
 			m_pVtxBuff->Unlock();
 		}
-	}
-
-	else
-	{
-		CUI::Uninit();
 	}
 }
 

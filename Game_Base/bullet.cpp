@@ -14,24 +14,32 @@
 
 //静的メンバ初期化
 CBullet* CBullet::m_pBullets[MBULLET] = {};
-
+//list <CBullet> bullets = {};
 int CBullet::BulletNum = NULL;
 
 /*=================================
 //コンストラクタ・デストラクタ
 =================================*/
 
-CBullet::CBullet() : CB_board(m_Priority = 5)
+CBullet::CBullet(/*D3DXVECTOR3 pos, D3DXVECTOR3 dest, D3DXVECTOR3 move, bool Player, bool Chased*/) : CB_board(m_Priority = 5)
 {
+	//IsPlayer = Player;
+	//IsUse = true;
+	//IsChase = Chased;
+	//Move = move;
+	//Dest = dest;
+	//Pos = pos;
 	IsPlayer = false;
 	IsUse = false;
 	IsChase = false;
-	move = {};
+	Pos = {};
 	Dest = {};
+	Move = {};
 	Life = NULL;
 	BulletNum++;
 	B_Height = 10.0f;
 	B_Width = 10.0f;
+
 }
 
 CBullet::~CBullet()
@@ -112,31 +120,9 @@ HRESULT CBullet::Init()
 
 void CBullet::Uninit()
 {
-	if (m_pMesh != nullptr)
-	{
-		m_pMesh->Release();
-		m_pMesh = nullptr;
-	}
+	CB_board::Uninit();
 
-	if (m_pBuffMat != nullptr)
-	{
-		m_pBuffMat->Release();
-		m_pBuffMat = nullptr;
-	}
-
-	if (m_ptex != nullptr)
-	{
-		m_ptex->Release();
-		m_ptex = nullptr;
-	}
-
-	if (m_pVtxBuff != nullptr)
-	{
-		m_pVtxBuff->Release();
-		m_pVtxBuff = nullptr;
-	}
-
-	//Release();
+	Release();
 
 }
 
@@ -208,10 +194,9 @@ CBullet* CBullet::Create(D3DXVECTOR3 PLpos, D3DXVECTOR3 Dest, D3DXVECTOR3 Move, 
 	Sin = Dest.y - PLpos.y;
 	float Radian = atan2f(Sin, Cos);
 
-	if (m_pBullets[B_Num] != nullptr)
-	{
-		m_pBullets[B_Num] = nullptr;
-	}
+	/*
+	bullets.emplace_back(PLpos,Dest, D3DXVECTOR3(cosf(Radian),sinf(Radian),Move.z), IsPlayer, IsChased);*/
+
 
 	if (m_pBullets[B_Num] == nullptr)
 	{
@@ -236,8 +221,6 @@ CBullet* CBullet::Create(D3DXVECTOR3 PLpos, D3DXVECTOR3 Dest, D3DXVECTOR3 Move, 
 		m_pBullets[B_Num]->Life = 2.8;
 		m_pBullets[B_Num]->OBJ_ID = B_Num;
 		m_pBullets[B_Num]->Init();
-		//bullet.push_back(CBullet());
-		//m_pBullets[B_Num]->Draw();
 	}
 
 	return m_pBullets[B_Num];

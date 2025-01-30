@@ -30,7 +30,7 @@ CObject::CObject(int nPriority)
 	m_nPriority = nPriority;
 	m_pNext = nullptr;
 	m_pPrev = nullptr;
-	IsUse = false;
+	IsUse = true;
 
 	for (int obj = 0; obj < MOBJ; obj++)
 	{
@@ -102,15 +102,13 @@ void CObject::Draw()
 void CObject::Release()
 {
 	int nID = m_nID;
+	int pri = m_nPriority;
 
-	for (int pri = 0; pri < MPRI; pri++)
-	{
 		if (m_apObject[pri][nID] != nullptr && m_apObject[pri][nID]->IsUse == false)
 		{
 			delete m_apObject[pri][nID];
 			m_apObject[pri][nID] = nullptr;
 		}
-	}
 }
 
 /*=======================

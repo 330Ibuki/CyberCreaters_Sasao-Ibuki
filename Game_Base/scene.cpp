@@ -189,6 +189,11 @@ void CScene::Update()
 				IsUse = false;
 				PTActive = true;
 			}
+
+			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+			{
+				IsUse = false;
+			}
 		}
 	}
 
