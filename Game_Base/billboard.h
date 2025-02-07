@@ -39,7 +39,7 @@ public:
 	//static CB_board* Create(D3DXVECTOR3 pos);	//引数（位置,アイテムタイプ）
 	static CB_board* GetItem(int I_Num);
 	static int GetItemAll();
-	bool IsUse;		//使用判断
+	//bool IsUse;		//使用判断
 
 protected:
 

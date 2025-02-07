@@ -38,7 +38,7 @@ HRESULT CScope::Init()
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 
 	D3DXCreateTextureFromFile(pDevice,
-		"data\\TEXTURE\\scope_test_5.png",
+		"data\\TEXTURE\\Scope.png",
 		&m_ptex);
 
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_3D) * 4,
@@ -94,13 +94,31 @@ void CScope::Uninit()
 
 void CScope::Update()
 {
-
+	CInputKeyboard* pKeyBoard = CManager::GetKeyboard();
 	CPlayerX* pPlayerX = pPlayerX->GetPlayer();
 	if (pPlayerX != nullptr)
 	{
 		if (pPlayerX->SwitchStat == true)
 		{
-			CB_board::Update();
+			if (pKeyBoard->GetPress(DIK_W) == true)
+			{
+				m_pos.y += 2.5;
+			}
+
+			if (pKeyBoard->GetPress(DIK_S) == true)
+			{
+				m_pos.y += -2.5;
+			}
+
+			if (pKeyBoard->GetPress(DIK_A) == true)
+			{
+				m_pos.x += -2.5;
+			}
+
+			if (pKeyBoard->GetPress(DIK_D) == true)
+			{
+				m_pos.x += 2.5;
+			}
 		}
 
 		else

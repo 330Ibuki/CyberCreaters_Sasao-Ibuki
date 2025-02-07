@@ -96,6 +96,7 @@ HRESULT CN_Score::Init()
 void CN_Score::Uninit()
 {
 	CB_board::Uninit();
+	Release();
 }
 
 /*==========================
@@ -286,6 +287,7 @@ HRESULT CN_Stock::Init()
 void CN_Stock::Uninit()
 {
 	CB_board::Uninit();
+	Release();
 }
 
 /*==========================
@@ -340,7 +342,6 @@ CN_Stock* CN_Stock::Create(D3DXVECTOR3 pos)
 {
 	if (m_Stock != nullptr)
 	{
-		/*delete m_scope;*/
 		m_Stock = nullptr;
 	}
 

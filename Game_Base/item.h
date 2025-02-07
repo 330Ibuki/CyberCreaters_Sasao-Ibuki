@@ -19,9 +19,6 @@ public:
 	{
 		I_SCORE = 0,	//スコア
 		I_EXTEND,		//残機
-		I_SPD,			//PL速度
-		I_POW,			//威力
-		I_INV,			//無敵化（未定）
 		ITEM_MAX
 	}ITEM;
 

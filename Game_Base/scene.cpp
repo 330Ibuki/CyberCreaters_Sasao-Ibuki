@@ -100,26 +100,30 @@ void CScene::Update()
 
 	if (m_Mode == M_TITLE)
 	{
-		if (IsUse == false && PTActive == false)
+		if (IsUse == false)
 		{
-			CScene::Uninit();
-			CManager::SetMode(M_DEBUG);
+			if (PTActive == false)
+			{
+				CScene::Uninit();
+				CManager::SetMode(M_DEBUG);
+			}
+
+			else if (PTActive == true)
+			{
+				CScene::Uninit();
+				CManager::SetMode(M_TOOL);
+			}
 		}
 
-		if (IsUse == false && PTActive == true)
-		{
-			CScene::Uninit();
-			CManager::SetMode(M_TOOL);
-		}
 
-		if (IsUse == true)
+		else
 		{
 			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
 			{
 				IsUse = false;
 			}
 
-			if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+			else if (m_pKeyboard->GetTrigger(DIK_F1) == true)
 			{
 				IsUse = false;
 				PTActive = true;

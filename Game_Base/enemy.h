@@ -60,7 +60,9 @@ public:
 	void Draw()override;	//•`‰æ
 
 private:
-	//static CE_Normal* E_N[ENM_MAX];
+	bool M_Switch;
+	int flame_move;
+	int flame_switch;
 
 };
 

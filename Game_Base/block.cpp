@@ -94,6 +94,7 @@ HRESULT CBlock::Init()
 void CBlock::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*============================
@@ -236,6 +237,7 @@ HRESULT CFloorRoof::Init()
 void CFloorRoof::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*============================
@@ -251,7 +253,7 @@ void CFloorRoof::Update()
 
 	else
 	{
-		CBlock::Uninit();
+		CFloorRoof::Uninit();
 	}
 }
 
@@ -261,7 +263,10 @@ void CFloorRoof::Update()
 
 void CFloorRoof::Draw()
 {
-	CBlock::Draw();
+	if (IsUse == true)
+	{
+		CBlock::Draw();
+	}
 }
 
 /*============================
@@ -338,7 +343,7 @@ HRESULT CFloorWall::Init()
 
 	//Xì«Ç›çûÇ›
 	D3DXLoadMeshFromX(
-		"data\\MODEL\\WallV2.x",
+		"data\\MODEL\\WallV3.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -376,6 +381,7 @@ HRESULT CFloorWall::Init()
 void CFloorWall::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*============================
@@ -391,7 +397,7 @@ void CFloorWall::Update()
 
 	else
 	{
-		CBlock::Uninit();
+		CFloorWall::Uninit();
 	}
 }
 
@@ -401,7 +407,10 @@ void CFloorWall::Update()
 
 void CFloorWall::Draw()
 {
-	CBlock::Draw();
+	if (IsUse == true)
+	{
+		CBlock::Draw();
+	}
 }
 
 /*============================
@@ -481,7 +490,7 @@ HRESULT CPlatform::Init()
 	if (P_type == CPlatform::PType::SMALL)
 	{
 		D3DXLoadMeshFromX(
-			"data\\MODEL\\platform_short.x",
+			"data\\MODEL\\platformV2_short.x",
 			D3DXMESH_SYSTEMMEM,
 			pDevice,
 			NULL,
@@ -535,6 +544,7 @@ HRESULT CPlatform::Init()
 void CPlatform::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*============================
@@ -550,7 +560,7 @@ void CPlatform::Update()
 
 	else
 	{
-		CBlock::Uninit();
+		CPlatform::Uninit();
 	}
 }
 
@@ -560,7 +570,10 @@ void CPlatform::Update()
 
 void CPlatform::Draw()
 {
-	CBlock::Draw();
+	if (IsUse == true)
+	{
+		CBlock::Draw();
+	}
 }
 
 /*============================
@@ -639,7 +652,7 @@ HRESULT CGround::Init()
 	if (G_type == CGround::GType::SMALL)
 	{
 		D3DXLoadMeshFromX(
-			"data\\MODEL\\GroundV1_short.x",
+			"data\\MODEL\\GroundV2_short.x",
 			D3DXMESH_SYSTEMMEM,
 			pDevice,
 			NULL,
@@ -652,7 +665,7 @@ HRESULT CGround::Init()
 	else if (G_type == CGround::GType::MIDDLE)
 	{
 		D3DXLoadMeshFromX(
-			"data\\MODEL\\GroundV1_middle.x",
+			"data\\MODEL\\GroundV2_middle.x",
 			D3DXMESH_SYSTEMMEM,
 			pDevice,
 			NULL,
@@ -665,7 +678,7 @@ HRESULT CGround::Init()
 	else if (G_type == CGround::GType::BIG)
 	{
 		D3DXLoadMeshFromX(
-			"data\\MODEL\\GroundV1_big.x",
+			"data\\MODEL\\GroundV2_big.x",
 			D3DXMESH_SYSTEMMEM,
 			pDevice,
 			NULL,
@@ -704,6 +717,7 @@ HRESULT CGround::Init()
 void CGround::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*============================
@@ -719,7 +733,7 @@ void CGround::Update()
 
 	else
 	{
-		CBlock::Uninit();
+		CGround::Uninit();
 	}
 }
 
@@ -729,7 +743,10 @@ void CGround::Update()
 
 void CGround::Draw()
 {
-	CBlock::Draw();
+	if (IsUse == true)
+	{
+		CBlock::Draw();
+	}
 }
 
 /*============================
@@ -858,6 +875,7 @@ HRESULT CSG::Init()
 void CSG::Uninit()
 {
 	CObjectX::Uninit();
+	Release();
 }
 
 /*==============================
@@ -872,7 +890,7 @@ void CSG::Update()
 
 	else
 	{
-		CBlock::Uninit();
+		CSG::Uninit();
 	}
 }
 
@@ -881,7 +899,10 @@ void CSG::Update()
 ==============================*/
 void CSG::Draw()
 {
-	CObjectX::Draw();
+	if (IsUse == true)
+	{
+		CBlock::Draw();
+	}
 }
 
 /*==============================

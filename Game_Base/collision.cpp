@@ -559,7 +559,9 @@ void CCollision::Update()
 						if (pBullet[i]->m_pos.x - 5 <= pEnemy[enemy]->m_pos.x + 5 &&
 							pBullet[i]->m_pos.x + 5 >= pEnemy[enemy]->m_pos.x - 5 &&
 							pBullet[i]->m_pos.y <= pEnemy[enemy]->m_pos.y + 20 &&
-							pBullet[i]->m_pos.y >= pEnemy[enemy]->m_pos.y)
+							pBullet[i]->m_pos.y >= pEnemy[enemy]->m_pos.y &&
+							pBullet[i]->m_pos.z >= pEnemy[enemy]->m_pos.z - 5 &&
+							pBullet[i]->m_pos.z <= pEnemy[enemy]->m_pos.z + 5 )
 						{
 							pBullet[i]->IsUse = false;
 							pEnemy[enemy]->E_HP--;
@@ -674,15 +676,7 @@ void CCollision::Update()
 					CN_Stock::SetStock(1, false);
 				}
 
-				else if (pItem[i]->Item_type == CItem::ITEM::I_SPD)
-				{
 
-				}
-
-				else if (pItem[i]->Item_type == CItem::ITEM::I_POW)
-				{
-
-				}
 			}
 
 		}

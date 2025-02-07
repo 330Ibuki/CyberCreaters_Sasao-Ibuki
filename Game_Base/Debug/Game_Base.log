@@ -1,6 +1,3 @@
-﻿  collision.cpp
-  enemy.cpp
-C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(49,30): warning C4305: '引数': 'double' から 'FLOAT' へ切り詰めます。
-C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(129,57): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
-  コードを生成中...
+﻿  enemy.cpp
+C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\enemy.cpp(126,57): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
   Game_Base.vcxproj -> C:\Users\student\Documents\Git\CyberCreaters_Sasao-Ibuki\Game_Base\Debug\Game_Base.exe

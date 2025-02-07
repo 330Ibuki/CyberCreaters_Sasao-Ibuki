@@ -14,21 +14,14 @@
 
 //静的メンバ初期化
 CBullet* CBullet::m_pBullets[MBULLET] = {};
-//list <CBullet> bullets = {};
 int CBullet::BulletNum = NULL;
 
 /*=================================
 //コンストラクタ・デストラクタ
 =================================*/
 
-CBullet::CBullet(/*D3DXVECTOR3 pos, D3DXVECTOR3 dest, D3DXVECTOR3 move, bool Player, bool Chased*/) : CB_board(m_Priority = 5)
+CBullet::CBullet() : CB_board(m_Priority = 5)
 {
-	//IsPlayer = Player;
-	//IsUse = true;
-	//IsChase = Chased;
-	//Move = move;
-	//Dest = dest;
-	//Pos = pos;
 	IsPlayer = false;
 	IsUse = false;
 	IsChase = false;
@@ -36,10 +29,13 @@ CBullet::CBullet(/*D3DXVECTOR3 pos, D3DXVECTOR3 dest, D3DXVECTOR3 move, bool Pla
 	Dest = {};
 	Move = {};
 	Life = NULL;
-	BulletNum++;
 	B_Height = 10.0f;
 	B_Width = 10.0f;
-
+	BulletNum++;
+	if (BulletNum > MBULLET)
+	{
+		BulletNum = 0;
+	}
 }
 
 CBullet::~CBullet()
@@ -120,7 +116,7 @@ HRESULT CBullet::Init()
 
 void CBullet::Uninit()
 {
-	CB_board::Uninit();
+	//CB_board::Uninit();
 
 	Release();
 
@@ -132,8 +128,6 @@ void CBullet::Uninit()
 
 void CBullet::Update()
 {
-	m_Flame_Count++;
-
 	if (IsUse == false)
 	{
 		Uninit();
@@ -141,7 +135,7 @@ void CBullet::Update()
 
 	if (IsUse == true)
 	{
-
+		m_Flame_Count++;
 		if (m_Flame_Count % 60 == 0)
 		{
 			Life--;
@@ -151,11 +145,10 @@ void CBullet::Update()
 				IsUse = false;
 			}
 		}
+		m_pos.x += move.x;
+		m_pos.y += move.y;
+		m_pos.z += move.z;
 	}
-
-	m_pos.x += move.x;
-	m_pos.y += move.y;
-	m_pos.z += move.z;
 
 }
 
@@ -194,9 +187,10 @@ CBullet* CBullet::Create(D3DXVECTOR3 PLpos, D3DXVECTOR3 Dest, D3DXVECTOR3 Move, 
 	Sin = Dest.y - PLpos.y;
 	float Radian = atan2f(Sin, Cos);
 
-	/*
-	bullets.emplace_back(PLpos,Dest, D3DXVECTOR3(cosf(Radian),sinf(Radian),Move.z), IsPlayer, IsChased);*/
-
+	if (m_pBullets[B_Num] != nullptr)
+	{
+		m_pBullets[B_Num] = nullptr;
+	}
 
 	if (m_pBullets[B_Num] == nullptr)
 	{
@@ -218,7 +212,7 @@ CBullet* CBullet::Create(D3DXVECTOR3 PLpos, D3DXVECTOR3 Dest, D3DXVECTOR3 Move, 
 		m_pBullets[B_Num]->move.z = 0;
 		m_pBullets[B_Num]->IsPlayer = IsPlayer;
 		m_pBullets[B_Num]->IsUse = true;
-		m_pBullets[B_Num]->Life = 2.8;
+		m_pBullets[B_Num]->Life = 1;
 		m_pBullets[B_Num]->OBJ_ID = B_Num;
 		m_pBullets[B_Num]->Init();
 	}

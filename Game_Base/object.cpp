@@ -104,7 +104,7 @@ void CObject::Release()
 	int nID = m_nID;
 	int pri = m_nPriority;
 
-		if (m_apObject[pri][nID] != nullptr && m_apObject[pri][nID]->IsUse == false)
+		if (/*m_apObject[pri][nID] != nullptr || */m_apObject[pri][nID]->IsUse == false)
 		{
 			delete m_apObject[pri][nID];
 			m_apObject[pri][nID] = nullptr;

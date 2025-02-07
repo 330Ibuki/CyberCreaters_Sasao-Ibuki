@@ -26,8 +26,8 @@ public:
 	void Update()override;
 	void Draw()override;
 	static CBG* Create(BG_Type type);
-	static CBG* GetUI();
-	static int GetUINum();
+	static CBG* GetBG();
+	static int GetBGNum();
 	int B_Type;
 private:
 	static CBG* m_BG;

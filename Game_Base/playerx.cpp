@@ -87,6 +87,7 @@ void CPlayerX::Uninit()
 			m_apModel[i] = nullptr;
 		}
 	}
+	Release();
 }
 
 /*====================l=========

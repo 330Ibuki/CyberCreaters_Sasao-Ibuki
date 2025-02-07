@@ -21,7 +21,7 @@ int CB_board::ItemAll = NULL;
 
 CB_board::CB_board(int nPriority):CObjectX(m_Priority)
 {
-	IsUse = true;
+	//IsUse = true;
 
 	B_Height = NULL;
 	B_Width = NULL;

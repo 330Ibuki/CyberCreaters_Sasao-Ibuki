@@ -46,7 +46,7 @@ HRESULT CEnemy::Init()
 
 	//パラメータの初期設定
 	m_rot = D3DXVECTOR3(NULL, NULL, NULL);
-	move = D3DXVECTOR3(0, 0, 0.1);
+	//move = D3DXVECTOR3(0, 0, 0.1);
 
 	//マテリアルデータのポインタ取得
 	D3DXMATERIAL* mat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
@@ -95,16 +95,13 @@ void CEnemy::Update()
 			{
 				if (m_Flame_Count % 60 == 0)
 				{
-					if (pPlayer->m_pos.x <= m_pos.x - 50 && pPlayer->m_pos.y <= m_pos.y + 40)
-					{
 						CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(0, 0, 0), false, true);
-					}
 				}
 			}
 			
 			else if (EType == E_RapidFire)
 			{
-				if (m_Flame_Count % 20 == 0 && RF_OverHeat == false && pPlayer->m_pos.x <= m_pos.x - 50 )
+				if (m_Flame_Count % 20 == 0 && RF_OverHeat == false)
 				{
 					CBullet::Create(D3DXVECTOR3(m_pos.x, m_pos.y + 5, m_pos.z), pPlayer->m_pos, D3DXVECTOR3(-5, -5, 0), false, true);
 					RF_Count++;
@@ -222,6 +219,7 @@ CEnemy* CEnemy::Create(D3DXVECTOR3 pos, E_TYPE E_Type)
 			m_apEnemy[E_Num]->m_pos.x = pos.x;
 			m_apEnemy[E_Num]->m_pos.y = pos.y;
 			m_apEnemy[E_Num]->m_pos.z = pos.z - 10;
+			m_apEnemy[E_Num]->move.z = 2.5;
 			m_apEnemy[E_Num]->EType = E_Type;
 			m_apEnemy[E_Num]->IsUse = true;
 			m_apEnemy[E_Num]->OBJ_ID = E_Num;
@@ -307,7 +305,9 @@ CEnemy* CEnemy::Create(D3DXVECTOR3 pos, E_TYPE E_Type)
 =============================*/
 CE_Normal::CE_Normal() : CEnemy()
 {
-
+	M_Switch = true;
+	flame_move = NULL;
+	flame_switch = NULL;
 }
 CE_Normal::~CE_Normal()
 {
@@ -323,7 +323,7 @@ HRESULT CE_Normal::Init()
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 
 	D3DXLoadMeshFromX(
-		"data\\MODEL\\E_Normal.x",
+		"data\\MODEL\\EV2_Normal.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -353,6 +353,8 @@ void CE_Normal::Uninit()
 =============================*/
 void CE_Normal::Update()
 {
+
+
 	if (m_bDeath == true)
 	{
 		Uninit();
@@ -360,6 +362,23 @@ void CE_Normal::Update()
 
 	if (E_HP > 0)
 	{
+		flame_switch++;
+
+		if (flame_switch % 60 == 0)
+		{
+			M_Switch = !M_Switch;
+		}
+
+		if (M_Switch == true)
+		{
+			flame_move++;
+			if (flame_move % 20 == 0)
+			{
+				move.z = move.z * (-1);
+			}
+			m_pos.z = m_pos.z + move.z;
+		}
+		
 		CEnemy::Update();
 	}
 

@@ -69,10 +69,10 @@ HRESULT CBG::Init()
 	//’¸“_À•W‚ÌÝ’è
 	if (B_Type == BG_GAME)
 	{
-		pVtx[0].pos = D3DXVECTOR3(0 - (500), 0 + (500), 30);
-		pVtx[1].pos = D3DXVECTOR3(0 + (500), 0 + (500), 30);
-		pVtx[2].pos = D3DXVECTOR3(0 - (500), 0 - (500), 30);
-		pVtx[3].pos = D3DXVECTOR3(0 + (500), 0 - (500), 30);
+		pVtx[0].pos = D3DXVECTOR3(0 - (500), 0 + (500), 100);
+		pVtx[1].pos = D3DXVECTOR3(0 + (500), 0 + (500), 100);
+		pVtx[2].pos = D3DXVECTOR3(0 - (500), 0 - (500), 100);
+		pVtx[3].pos = D3DXVECTOR3(0 + (500), 0 - (500), 100);
 	}
 
 	else
@@ -198,12 +198,12 @@ void CBG::Draw()
 /*===========================
 //ŠeŽíŽæ“¾
 ===========================*/
-CBG* CBG::GetUI()
+CBG* CBG::GetBG()
 {
 	return m_BG;
 }
 
-int CBG::GetUINum()
+int CBG::GetBGNum()
 {
 	return BGNum;
 }
@@ -214,17 +214,20 @@ int CBG::GetUINum()
 
 CBG* CBG::Create(BG_Type type)
 {
-	int UI_Num = CBG::GetUINum();
+	int UI_Num = CBG::GetBGNum();
 
 	if (m_BG != nullptr)
 	{
- 		m_BG = nullptr;
+		m_BG = nullptr;
+		m_BG = new CBG();
+		m_BG->B_Type = type;
+		m_BG->IsUse = true;
+		m_BG->Init();
 	}
 
-	if (m_BG == nullptr/* && UI_Num < 2*/)
+	else if (m_BG == nullptr/* && UI_Num < 2*/)
 	{
 		m_BG = new CBG();
-
 		m_BG->B_Type = type;
 		m_BG->IsUse = true;
 		m_BG->Init();
