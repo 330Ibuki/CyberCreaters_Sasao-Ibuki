@@ -22,7 +22,7 @@ public:
 	* ‚Sui/item
 	* 5bullet
 	*/
-	CObject(int nPriority = 3);
+	 CObject(int nPriority = 3);
 	virtual ~CObject();
 	virtual HRESULT Init() = 0;
 	virtual void Uninit() = 0;
@@ -33,13 +33,19 @@ public:
 	static void UpdateAll();
 	static void DrawAll();
 	static CObject* GetObject(int Pri,int Idx);
+	int GetPri() const;
+ //void Remove(CObject* obj);
+	 //void AddObj(CObject* obj);
+	//static list<CObject> object;
 	bool IsUse;
 
 protected:
 	void Release();
-	int m_nPriority;
+	static int m_nPriority;
+	//static map<int, list<CObject*>> object;
 private:
 	static CObject* m_apObject[MPRI][MOBJ];
+
 	static int m_nNumAll;
 	int m_nID;
 

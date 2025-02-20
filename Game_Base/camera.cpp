@@ -11,6 +11,7 @@
 #include "renderer.h"
 #include "tool.h"
 #include "player.x.h"
+#include "BG.h"
 
 /*=============================
 //コンストラクタ・デストラクタ
@@ -58,28 +59,41 @@ void CCamera::Uninit()
 
 void CCamera::Update()
 {
-	CPlayerX* pPlayerX = pPlayerX->GetPlayer();
-	CToolPlace* Tool = Tool->GetTool();
-	if (pPlayerX != nullptr)
-	{
-		m_PosR.x = pPlayerX->m_pos.x + 5;
-		m_PosR.y = pPlayerX->m_pos.y + 0;
-		m_PosR.z = pPlayerX->m_pos.z;
+	CBG* pBG = pBG->GetBG();
+	
+		if (pBG->B_Type == CBG::BG_Type::BG_GAME)
+		{
+			CPlayerX* pPlayerX = pPlayerX->GetPlayer();
+			m_PosR.x = pPlayerX->m_pos.x + 5;
+			m_PosR.y = pPlayerX->m_pos.y + 0;
+			m_PosR.z = pPlayerX->m_pos.z;
 
-		m_PosV.x = pPlayerX->m_pos.x - 0;
-		m_PosV.y = pPlayerX->m_pos.y + 40;
-		m_PosV.z = pPlayerX->m_pos.z - 200;
-	}
+			m_PosV.x = pPlayerX->m_pos.x - 0;
+			m_PosV.y = pPlayerX->m_pos.y + 40;
+			m_PosV.z = pPlayerX->m_pos.z - 200;
+		}
 
-	if (Tool != nullptr)
-	{
-		m_PosR.x = Tool->B_pos.x;
-		m_PosR.y = Tool->B_pos.y + 50;
-		m_PosR.z = Tool->B_pos.z;
+		else if (pBG->B_Type == CBG::BG_Type::BG_TITLE || pBG->B_Type == CBG::BG_Type::BG_RESULT)
+		{
+			m_PosR.x = 0;
+			m_PosR.y = 0;
+			m_PosR.z = 0;
 
-		m_PosV.x = Tool->B_pos.x;
-		m_PosV.y = Tool->B_pos.y + 50;
-		m_PosV.z = Tool->B_pos.z - 200;
+			m_PosV.x = 0;
+			m_PosV.y = 0;
+			m_PosV.z = -100;
+		}
+
+	else
+	{	
+			CToolPlace* Tool = Tool->GetTool();
+			m_PosR.x = Tool->B_pos.x;
+			m_PosR.y = Tool->B_pos.y + 50;
+			m_PosR.z = Tool->B_pos.z;
+
+			m_PosV.x = Tool->B_pos.x;
+			m_PosV.y = Tool->B_pos.y + 50;
+			m_PosV.z = Tool->B_pos.z - 200;
 	}
 }
 

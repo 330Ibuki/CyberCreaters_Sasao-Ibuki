@@ -20,6 +20,7 @@ int CBG::BGNum = NULL;
 CBG::CBG() : CB_board(m_Priority = 3)
 {
 	B_Type = NULL;
+	/*IsGame = false;*/
 	BGNum++;
 }
 
@@ -77,10 +78,10 @@ HRESULT CBG::Init()
 
 	else
 	{
-		pVtx[0].pos = D3DXVECTOR3(0 - (200), 0 + (200), 30);
-		pVtx[1].pos = D3DXVECTOR3(0 + (200), 0 + (200), 30);
-		pVtx[2].pos = D3DXVECTOR3(0 - (200), 0 - (200), 30);
-		pVtx[3].pos = D3DXVECTOR3(0 + (200), 0 - (200), 30);
+		pVtx[0].pos = D3DXVECTOR3(0 - (170), 0 + (170), 30);
+		pVtx[1].pos = D3DXVECTOR3(0 + (170), 0 + (170), 30);
+		pVtx[2].pos = D3DXVECTOR3(0 - (170), 0 - (170), 30);
+		pVtx[3].pos = D3DXVECTOR3(0 + (170), 0 - (170), 30);
 	}
 
 	////法線ベクトル
@@ -212,7 +213,7 @@ int CBG::GetBGNum()
 //生成
 =============================*/
 
-CBG* CBG::Create(BG_Type type)
+CBG* CBG::Create(BG_Type type/*, bool Game*/)
 {
 	int UI_Num = CBG::GetBGNum();
 
@@ -221,6 +222,7 @@ CBG* CBG::Create(BG_Type type)
 		m_BG = nullptr;
 		m_BG = new CBG();
 		m_BG->B_Type = type;
+		//m_BG->IsGame = Game;
 		m_BG->IsUse = true;
 		m_BG->Init();
 	}
@@ -229,6 +231,7 @@ CBG* CBG::Create(BG_Type type)
 	{
 		m_BG = new CBG();
 		m_BG->B_Type = type;
+		//m_BG->IsGame = Game;
 		m_BG->IsUse = true;
 		m_BG->Init();
 	}

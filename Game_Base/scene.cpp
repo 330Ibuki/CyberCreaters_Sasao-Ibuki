@@ -90,129 +90,133 @@ void CScene::Uninit()
 
 void CScene::Update()
 {
-	CRenderer* m_pRenderer = new CRenderer();
-	m_pRenderer = CManager::GetRenderer();
-	LPDIRECT3DDEVICE9 pDevice = m_pRenderer->GetDevice();
-	CN_Stock* Stock = Stock->GetStock();
-	m_pRenderer->Update();
-	m_pKeyboard->Update();
-	m_pCamera->Update();
-
-	if (m_Mode == M_TITLE)
+	if (IsUse == true)
 	{
-		if (IsUse == false)
+		CRenderer* m_pRenderer = new CRenderer();
+		m_pRenderer = CManager::GetRenderer();
+		LPDIRECT3DDEVICE9 pDevice = m_pRenderer->GetDevice();
+		CN_Stock* Stock = Stock->GetStock();
+		m_pRenderer->Update();
+		m_pKeyboard->Update();
+		m_pCamera->Update();
+
+		if (m_Mode == M_TITLE)
 		{
-			if (PTActive == false)
+			if (IsUse == false)
 			{
-				CScene::Uninit();
-				CManager::SetMode(M_DEBUG);
+				if (PTActive == false)
+				{
+					CScene::Uninit();
+					CManager::SetMode(M_DEBUG);
+				}
+
+				else if (PTActive == true)
+				{
+
+					CScene::Uninit();
+					CManager::SetMode(M_TOOL);
+				}
 			}
 
-			else if (PTActive == true)
+
+			else
+			{
+				if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+				{
+					IsUse = false;
+				}
+
+				else if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+				{
+					IsUse = false;
+					PTActive = true;
+				}
+			}
+		}
+
+		else if (m_Mode == M_GAME)
+		{
+			if (IsUse == false)
+			{
+				CScene::Uninit();
+				CManager::SetMode(M_TITLE);
+			}
+
+			if (IsUse == true)
+			{
+				m_pCol->Update();
+				if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+				{
+					IsUse = false;
+				}
+			}
+		}
+
+		else if (m_Mode == M_RESULT)
+		{
+			if (IsUse == false)
+			{
+				CScene::Uninit();
+				CManager::SetMode(M_TITLE);
+			}
+
+			if (IsUse == true)
+			{
+				if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+				{
+					IsUse = false;
+				}
+			}
+		}
+
+		else if (m_Mode == M_DEBUG)
+		{
+			if (IsUse == false)
+			{
+				CScene::Uninit();
+				CManager::SetMode(M_TITLE);
+			}
+
+			if (IsUse == false && PTActive == true)
 			{
 				CScene::Uninit();
 				CManager::SetMode(M_TOOL);
 			}
-		}
 
-
-		else
-		{
-			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+			if (IsUse == true)
 			{
-				IsUse = false;
-			}
+				m_pCol->Update();
+				if (Stock->StockNum < 0)
+				{
+					IsUse = false;
+				}
 
-			else if (m_pKeyboard->GetTrigger(DIK_F1) == true)
-			{
-				IsUse = false;
-				PTActive = true;
-			}
-		}
-	}
+				if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+				{
+					IsUse = false;
+					PTActive = true;
+				}
 
-	else if (m_Mode == M_GAME)
-	{
-		if (IsUse == false)
-		{
-			CScene::Uninit();
-			CManager::SetMode(M_TITLE);
-		}
-
-		if (IsUse == true)
-		{
-			m_pCol->Update();
-			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
-			{
-				IsUse = false;
+				if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+				{
+					IsUse = false;
+				}
 			}
 		}
-	}
 
-	else if (m_Mode == M_RESULT)
-	{
-		if (IsUse == false)
+		else if (m_Mode == M_TOOL)
 		{
-			CScene::Uninit();
-			CManager::SetMode(M_TITLE);
-		}
-
-		if (IsUse == true)
-		{
-			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
+			if (IsUse == false)
 			{
-				IsUse = false;
-			}
-		}
-	}
-
-	else if (m_Mode == M_DEBUG)
-	{
-		if (IsUse == false)
-		{
-			CScene::Uninit();
-			CManager::SetMode(M_TITLE);
-		}
-
-		if (IsUse == false && PTActive == true)
-		{
-			CScene::Uninit();
-			CManager::SetMode(M_TOOL);
-		}
-
-		if (IsUse == true)
-		{
-			m_pCol->Update();
-			if (Stock->StockNum < 0)
-			{
-				IsUse = false;
+				CScene::Uninit();
+				CManager::SetMode(M_TITLE);
 			}
 
-			if (m_pKeyboard->GetTrigger(DIK_F1) == true)
+			if (IsUse == true)
 			{
-				IsUse = false;
-				PTActive = true;
+				m_Tool->GetTool();
+				m_Tool->Update();
 			}
-
-			if (m_pKeyboard->GetTrigger(DIK_RETURN) == true)
-			{
-				IsUse = false;
-			}
-		}
-	}
-
-	else if (m_Mode == M_TOOL)
-	{
-		if (IsUse == false)
-		{
-			CScene::Uninit();
-			CManager::SetMode(M_TITLE);
-		}
-
-		if (IsUse == true)
-		{
-			m_Tool->GetTool();
-			m_Tool->Update();
 		}
 	}
 }
@@ -300,8 +304,8 @@ CTitle::~CTitle()
 HRESULT CTitle::Init()
 {
 	CScene::Init();
-	CBG::Create(CBG::BG_Type::BG_TITLE);
-	CUI::Create(D3DXVECTOR3(0,-55,0), CUI::CUI::UType::UI_S_GUIDE);
+	CBG::Create(CBG::BG_Type::BG_TITLE/*,false*/);
+	//CUI::Create(D3DXVECTOR3(0,-55,0), CUI::CUI::UType::UI_S_GUIDE);
 	return S_OK;
 }
 
@@ -359,7 +363,7 @@ HRESULT CGame::Init()
 	CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_OPEN);
 	CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_PLAY);
 	CStage::LoadStage(1);//Priority1.2
-	CBG::Create(CBG::BG_Type::BG_GAME);//Priority3
+	CBG::Create(CBG::BG_Type::BG_GAME/*,true*/);//Priority3
 	CUI::Create(D3DXVECTOR3(-70, -50, 0), CUI::UType::UI_LIFE);//Priority4
 	CUI::Create(D3DXVECTOR3(120, -50, 0), CUI::UType::UI_SCORE);//Priority4
 	CN_Stock::Create(D3DXVECTOR3(-70, -50, 0));//Priority4
@@ -419,7 +423,7 @@ CResult::~CResult()
 HRESULT CResult::Init()
 {
 	CScene::Init();
-	CBG::Create(CBG::BG_Type::BG_RESULT);
+	CBG::Create(CBG::BG_Type::BG_RESULT/*,false*/);
 	//Score
 	return S_OK;
 }
@@ -479,7 +483,7 @@ HRESULT CDebug::Init()
 	//CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_OPEN);
 	//CSound::BGM(CSound::SOUND_BGM::BGM_TEST, CSound::BGM_STATE::BGM_PLAY);
 	CStage::LoadStage(1);
-	CBG::Create(CBG::BG_Type::BG_GAME);
+	CBG::Create(CBG::BG_Type::BG_GAME/*,true*/);
 	CUI::Create(D3DXVECTOR3(-70, -50, 0), CUI::UType::UI_LIFE);
 	CUI::Create(D3DXVECTOR3(120, -50, 0), CUI::UType::UI_SCORE);
 	CN_Stock::Create(D3DXVECTOR3(-80, -50, 0));

@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <map>
 
 //ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒŠƒ“ƒN
 #pragma comment (lib, "d3d9.lib")

@@ -25,10 +25,11 @@ public:
 	void Uninit()override;
 	void Update()override;
 	void Draw()override;
-	static CBG* Create(BG_Type type);
+	static CBG* Create(BG_Type type/*,bool Game*/);
 	static CBG* GetBG();
 	static int GetBGNum();
 	int B_Type;
+	//bool IsGame;	//trueでタイトル,、falseでゲーム等
 private:
 	static CBG* m_BG;
 	static int BGNum;

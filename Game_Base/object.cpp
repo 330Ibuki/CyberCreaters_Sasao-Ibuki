@@ -16,7 +16,9 @@
 =======================*/
 
 int CObject::m_nNumAll = 0;
+int CObject::m_nPriority = 0;
 CObject* CObject::m_apObject[MPRI][MOBJ] = {};
+
 CObject* CObject::m_pTop[MPRI] = {};
 CObject* CObject::m_pCur[MPRI] = {};
 
@@ -102,7 +104,7 @@ void CObject::Draw()
 void CObject::Release()
 {
 	int nID = m_nID;
-	int pri = m_nPriority;
+	int pri = CObject::GetPri();
 
 		if (/*m_apObject[pri][nID] != nullptr || */m_apObject[pri][nID]->IsUse == false)
 		{
@@ -110,6 +112,21 @@ void CObject::Release()
 			m_apObject[pri][nID] = nullptr;
 		}
 }
+
+//void CObject::Remove(CObject* obj)
+//{
+//	int pri = obj->GetPri();
+//	auto it = object.find(pri);
+//
+//	if (it != object.end())
+//	{
+//		it->second.remove(obj);
+//		if (it->second.empty())
+//		{
+//			object.erase(it);	//リストが空ならエントリ削除
+//		}
+//	}
+//}
 
 /*=======================
 //全オブジェクト開放・更新・描画
@@ -134,7 +151,7 @@ void CObject::ReleaseAll()
 			{
 
 				m_apObject[pri][obj]->IsUse = false;
-				//m_apObject[pri][obj]->Uninit();
+				m_apObject[pri][obj]->Uninit();
 				m_apObject[pri][obj]->Release();
 			}
 		}
@@ -163,6 +180,14 @@ void CObject::UpdateAll()
 			}
 		}
 	}
+
+	//for (auto& pair : object)
+	//{
+	//	for (CObject* obj : pair.second)
+	//	{
+	//		obj->Update();
+	//	}
+	//}
 }
 
 void CObject::DrawAll()
@@ -197,3 +222,13 @@ CObject* CObject::GetObject(int Pri, int Idx)
 {
 	return m_apObject[Pri][Idx];
 }
+
+int CObject::GetPri() const
+{
+	return m_nPriority;
+}
+
+//void CObject::AddObj(CObject* obj)
+//{
+//	object[obj->GetPri()].push_back(obj);
+//}

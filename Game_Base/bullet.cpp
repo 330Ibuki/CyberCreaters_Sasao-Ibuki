@@ -32,10 +32,10 @@ CBullet::CBullet() : CB_board(m_Priority = 5)
 	B_Height = 10.0f;
 	B_Width = 10.0f;
 	BulletNum++;
-	if (BulletNum > MBULLET)
-	{
-		BulletNum = 0;
-	}
+	//if (BulletNum > MBULLET)
+	//{
+	//	BulletNum = 0;
+	//}
 }
 
 CBullet::~CBullet()
@@ -116,9 +116,9 @@ HRESULT CBullet::Init()
 
 void CBullet::Uninit()
 {
-	//CB_board::Uninit();
+	CB_board::Uninit();
 
-	Release();
+	//Release();
 
 }
 
